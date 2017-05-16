@@ -1,0 +1,115 @@
+#input_container {
+    position:relative;
+    padding:0;
+    margin:0;
+    background:#ddd;
+    display:inline-table
+
+
+}
+.Location-input {
+    margin:0;
+    padding-left: 15px;
+    padding-right: 25px;
+    height: 60px;
+    width: 200px;
+    font-size: 16px;
+    color: black;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
+#input_img {
+    position:absolute;
+    left:175px;
+    top: 20px;
+    width:20px;
+    filter: grayscale(100%);
+}
+#input_img:hover{
+
+    position:absolute;
+    left:175px;
+    top: 20px;
+    width:20px;
+    filter: grayscale(100%);
+    background: url(image/location_focus.png )
+}
+
+#dateinput{
+    font-size: 16px;
+    background-image: url('https://a1.r9cdn.net/res/images/horizon/common/frontdoor/challenger-calendar@1x.png?v=54eccc2ae1366e169ebee8b4bb77ddfde9b40476');
+    background-position: 10px 22px; 
+    background-repeat: no-repeat;
+    padding: 11px 20px 12px 30px;
+    height: 60px;
+    width: 120px; 
+}
+
+.input{
+    border: none;
+    border-right:1px solid #E0E0E0;
+}
+
+.input:hover {
+    border: none;
+    border-right:1px solid #E0E0E0;
+    border-bottom: 2px solid #FFAB00;
+   outline:0;
+   border-top: none;
+}
+.input:focus{
+    border: none;
+    border-right:1px solid #ccc;
+    border-bottom: 2px solid #FF6F00;
+    outline:none;
+
+}
+/* do not group these rules */
+*::-webkit-input-placeholder {
+    color: #BDBDBD;
+    font-family: 'myFont', Arial, Helvetica, sans-serif;  
+
+}
+*:-moz-placeholder {
+    /* FF 4-18 */
+    color: #BDBDBD;
+    font-family: 'myFont', Arial, Helvetica, sans-serif;  
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+    color: #BDBDBD;
+    font-family: 'myFont', Arial, Helvetica, sans-serif;  
+}
+*:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #BDBDBD;
+    font-family: 'myFont', Arial, Helvetica, sans-serif;  
+}
+
+.btn-search{
+    color: #fff;
+    background-color: #fed136;
+    border-color: #fed136;
+      height: 60px;
+    width: 120px; 
+    padding: 19px 40px;
+    font-size: 18px;
+border-radius: 3px;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.btn-search:hover{
+      color: #fff;
+    background-color:#FFB300;
+    border-color: #FFB300;
+      height: 60px;
+    width: 120px; 
+    padding: 19px 40px;
+    font-size: 18px;
+border-radius: 3px;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    }
