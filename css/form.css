@@ -17,13 +17,15 @@
     color: black;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 
+
 }
+
 #input_img {
     position:absolute;
     left:175px;
     top: 20px;
     width:20px;
-    filter: grayscale(100%);
+    filter: grayscale(100%);`
 }
 #input_img:hover{
 
@@ -40,9 +42,10 @@
     background-image: url('https://a1.r9cdn.net/res/images/horizon/common/frontdoor/challenger-calendar@1x.png?v=54eccc2ae1366e169ebee8b4bb77ddfde9b40476');
     background-position: 10px 22px; 
     background-repeat: no-repeat;
-    padding: 11px 20px 12px 30px;
+    padding: 10px 20px 12px 30px;
     height: 60px;
-    width: 120px; 
+    width: 135px; 
+    color: black;
 }
 
 .input{
@@ -55,7 +58,8 @@
     border-right:1px solid #E0E0E0;
     border-bottom: 2px solid #FFAB00;
    outline:0;
-   border-top: none;
+   
+
 }
 .input:focus{
     border: none;
@@ -113,3 +117,4 @@ border-radius: 3px;
     text-transform: uppercase;
     font-weight: 700;
     }
+
