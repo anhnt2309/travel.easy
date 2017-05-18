@@ -37,7 +37,7 @@
     background: url(image/location_focus.png )
 }
 
-#dateinput{
+.dateinput{
     font-size: 16px;
     background-image: url('https://a1.r9cdn.net/res/images/horizon/common/frontdoor/challenger-calendar@1x.png?v=54eccc2ae1366e169ebee8b4bb77ddfde9b40476');
     background-position: 10px 22px; 
@@ -96,7 +96,10 @@
     border-color: #fed136;
       height: 60px;
     width: 120px; 
-    padding: 19px 40px;
+    padding-top: 19px;
+    padding-left: 40px;
+    padding-bottom: 20px;
+    padding-right: 41px;
     font-size: 18px;
 border-radius: 3px;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -110,7 +113,10 @@ border-radius: 3px;
     border-color: #FFB300;
       height: 60px;
     width: 120px; 
-    padding: 19px 40px;
+    padding-top: 19px;
+    padding-left: 40px;
+    padding-bottom: 20px;
+    padding-right: 41px;
     font-size: 18px;
 border-radius: 3px;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -118,3 +124,50 @@ border-radius: 3px;
     font-weight: 700;
     }
 
+/* Center the loader */
+#loader {
+    position:absolute;
+    left:175px;
+    top: 20px;
+    width:20px;
+  
+  z-index: 1;
+ 
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
