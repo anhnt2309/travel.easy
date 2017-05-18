@@ -2,7 +2,9 @@
 
 $from = $_GET['from-location'];
 
-
+if($from == "da lat"){
+	$from = "dli";
+}
 
 $curl = curl_init();
 
@@ -29,11 +31,19 @@ if ($err) {
 	// echo $response;
 	if($response != null){
 		$response_array = json_decode($response);
-
+		echo" <datalist id='airport'>";
 		foreach ($response_array as $key => $value) {
-			$first = strtok($value->label, '[');
-			echo $value->value ." -- ". $first ."<br>";
+			$airportName = strtok($value->label, '[');
+			$cityName = strtok($value->label, '-');
+			$cityName = strtok($cityName, '[');
+
+
+			echo "<option value='".$cityName." (" .$value->value.")'>". $airportName ."</option>";
+			// echo $value->value ." -- ". $first ."<br>";
 		}
+		echo "</datalist>";
+		// echo $response;
+
 	}
 }
 
