@@ -195,9 +195,10 @@ $("#from-input").focusin(function() {
     $.each(data, function(key, value) {
  
       var value2 = value.city_name + "(" + value.airport +")";
+      var airport_name = value.airport_name +"( " +value.distance + " km)";
       // alert(value.airport_name);
 
-      list.push([value.airport_name,value2]);
+      list.push([airport_name,value2]);
         // alert(list);
     });
     awesomplete.list = list;
