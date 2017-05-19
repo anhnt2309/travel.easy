@@ -121,7 +121,9 @@
 
         <script >
           $(document).ready(function(){
-
+$(window).scroll(function(){
+    $(".intro-text").css("opacity", 1 - $(window).scrollTop() / 250);
+  });
             $("#input_img").hover(function(){
                 $("#input_img").attr('src', 'image/location_focus.png');
             });
@@ -129,7 +131,7 @@
                 $("#input_img").attr('src', 'image/location2.png');
             });
             //get from airport autocomplete
-            // $("#from-input").on('input',function(){
+            // $("#from-input").ossn('input',function(){
             //     from = $(this).val();
             //     // alert(from);
             //     $.get("php/airport-autocomplete.php?from-location="+from, function(data,status){
@@ -152,7 +154,10 @@ var awesomplete = new Awesomplete(input2, {
   autoFirst: true,
   maxItems:5
 });
-             $("#input_img").click(function () { //user clicks button
+             $("#input_img").click(function () { 
+              $("#input_img").off("mouseleave");
+                $("#input_img").attr('src', 'image/poi.gif');
+            //user clicks button
 
     if ("geolocation" in navigator){ //check geolocation available 
         //try to get user current location using getCurrentPosition() method
@@ -202,6 +207,7 @@ $("#from-input").focusin(function() {
         // alert(list);
     });
     awesomplete.list = list;
+    $("#input_img").attr('src', 'image/location2.png');
    
   });
 });
@@ -221,7 +227,6 @@ $("#from-input").focusin(function() {
  <body id="page-top" class="index">
 
     <!-- Navigation -->
-
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -309,9 +314,9 @@ $("#from-input").focusin(function() {
         <header>
 
             <div class="container" >
-                <div class="intro-text">
-                    <div class="intro-lead-in">Welcome To Our Trip!</div>
-                    <div class="return-txt" style="text-align:justify"><a style="font-size: 16px;     margin-left: 150px;     color: #31708f;"><b>Return</b>&nbsp;</a> <a style="font-size: 16px; color: #31708f;"><b>One-way</b></a> </div>
+                <div class="intro-text" style="    position: relative">
+                    <div class="intro-lead-in">Let find some flight deals</div>
+                    <div class="return-txt" style="text-align:justify"><a style="font-size: 16px;     margin-left: 55px;     color: white;"><b>Return</b>&nbsp;</a> <a style="font-size: 16px; color: white;"><b>One-way</b></a> </div>
                     <div id="input_container" >
 
                         <input id="from-input"  data-minchars="0" class=" input Location-input "  placeholder="From"  >
@@ -340,7 +345,6 @@ $("#from-input").focusin(function() {
                     </div>   
 
 </div>
-
             </div>
 
 
