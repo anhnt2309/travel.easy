@@ -13,8 +13,8 @@
     <!--momentjs-->
     <script src="js/moment.js" ></script>
 
- <script src='https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.js'></script>
- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://cdn.rawgit.com/LeaVerou/awesomplete/gh-pages/awesomplete.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -42,6 +42,21 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="css/agency.min.css">
+
+
+    <!-- test meterial dialog -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <link rel='stylesheet prefetch' href='https://cdn.gitcdn.xyz/cdn/angular/bower-material/v1.0.0-rc5-master-3d65dea/angular-material.css'>
+
+     <!-- Buttons core css -->
+  <link rel="stylesheet" href="css/buttons.css">
+
+ <!-- animated csss -->
+  <link rel="stylesheet" href="css/animate.css">
+   <script src="js/animation.js" ></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -121,15 +136,120 @@
 
         <script >
           $(document).ready(function(){
-$(window).scroll(function(){
-    $(".intro-text").css("opacity", 1 - $(window).scrollTop() / 250);
-  });
+
+            $("#one-way").click(function(){
+                  $("#one-way").addClass('animated jello');
+                  $('#one-way').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                    $("#one-way").removeClass('animated jello')
+                  });
+
+                 $("#end_date").hide();
+                 $("#end_date").addClass('animated fadeIn');
+                  $('#end_date').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                    $("#end_date").removeClass('animated fadeIn')
+                  });
+
+                 $("#start_date").css('width', '270');
+                 $("#one-way").removeClass("flight-type-unselected");
+                 $("#one-way").addClass("flight-type");
+                 $("#return").removeClass("flight-type");
+                  $("#return").addClass("flight-type-unselected");
+            });
+
+             $("#return").click(function(){
+                  $("#return").addClass('animated jello');
+                  $('#return').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                    $("#return").removeClass('animated jello')
+                  });
+
+                  
+
+                 $("#end_date").show();
+                 $("#start_date").css('width', '135');
+                  $("#return").removeClass("flight-type-unselected");
+                 $("#return").addClass("flight-type");
+                 $("#one-way").removeClass("flight-type");
+                  $("#one-way").addClass("flight-type-unselected");
+            });
+
+            $("#from-input").on("click",function(){
+                //visible logic
+               
+              $("#from-check").css('visibility', 'visible');
+              $("#from-check").addClass('animated bounceIn');
+              $('#from-check').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                $("#from-check").removeClass('animated bounceIn');
+            });
+
+              if ( $('#to-check').css('visibility') == 'visible' ){
+                 $("#to-check").css('visibility', 'hidden');
+            //       $("#to-check").addClass('animated bounceOut');
+            //     $('#to-check').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+            //     $("#to-check").removeClass('animated bounceOut');
+            // });
+             }
+
+             if ( $('#option_container').css('visibility') == 'visible' ){
+                 $("#option_container").css('visibility', 'hidden');
+             }
+
+         });
+
+            $("#to-input").on("click",function(){
+
+              $("#to-check").css('visibility', 'visible');
+              $("#to-check").css('visibility', 'visible');
+              $("#to-check").addClass('animated bounceIn');
+              $('#to-check').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                $("#to-check").removeClass('animated bounceIn');
+            });
+
+              if ( $('#from-check').css('visibility') == 'visible' ){
+                 $("#from-check").css('visibility', 'hidden');
+             } 
+             if ( $('#option_container').css('visibility') == 'visible' ){
+                 $("#option_container").css('visibility', 'hidden');
+             }
+         });
+
+                
+            $("#to-check").click(function () { 
+              $("#from-input").focus();
+          });
+            $(window).scroll(function(){
+                $(".intro-text").css("opacity", 1 - $(window).scrollTop() / 250);
+            });
             $("#input_img").hover(function(){
                 $("#input_img").attr('src', 'image/location_focus.png');
             });
             $("#input_img").mouseleave(function(){
                 $("#input_img").attr('src', 'image/location2.png');
             });
+
+            $("#flight-option").click(function () { 
+                  // $("#flight-option").off("mouseleave");
+                   if ( $('#option_container').css('visibility') == 'visible' ){
+                 $("#option_container").css('visibility', 'hidden');
+                 $("#option_container").addClass('animated fadeOutDown');
+                  $('#option_container').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                    $("#option_container").removeClass('animated fadeOutDown')
+                  });
+             }else{
+                $("#option_container").css('visibility', 'visible');
+            }
+            });
+           
+            $("#start_date").click(function () { 
+               if ( $('#option_container').css('visibility') == 'visible' ){
+                 $("#option_container").css('visibility', 'hidden');
+             }
+          });
+               $("#end_date").click(function () { 
+               if ( $('#option_container').css('visibility') == 'visible' ){
+                 $("#option_container").css('visibility', 'hidden');
+             }
+          });
+
             //get from airport autocomplete
             // $("#from-input").ossn('input',function(){
             //     from = $(this).val();
@@ -146,17 +266,17 @@ $(window).scroll(function(){
             //         // }
             //     });
             // });
-           
+
              //get nearby airport
              var input2 = document.getElementById("from-input");
-var awesomplete = new Awesomplete(input2, {
-  minChars: 0,
-  autoFirst: true,
-  maxItems:5
-});
+             var awesomplete = new Awesomplete(input2, {
+              minChars: 0,
+              autoFirst: true,
+              maxItems:5
+          });
              $("#input_img").click(function () { 
               $("#input_img").off("mouseleave");
-                $("#input_img").attr('src', 'image/poi.gif');
+              $("#input_img").attr('src', 'image/poi.gif');
             //user clicks button
 
     if ("geolocation" in navigator){ //check geolocation available 
@@ -176,29 +296,29 @@ var awesomplete = new Awesomplete(input2, {
 
                 //     $("#from-input").addClass('awesomplete');
                 //     $("#from-input").focus();
-                    
-                // });
-$("#from-input").focus();
-$("#from-input").focusin(function() {
-    // alert("a");
-                
 
-  var searchTerm;
-  searchTerm = this.value;
-  if(this.value== "đà lạt" || this.value== "da lat"){
+                // });
+                $("#from-input").focus();
+                $("#from-input").focusin(function() {
+    // alert("a");
+
+
+    var searchTerm;
+    searchTerm = this.value;
+    if(this.value== "đà lạt" || this.value== "da lat"){
      searchTerm = "dli";
-   
-  }
-  
-  $.ajax({
+
+ }
+
+ $.ajax({
     url: 'https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=6NwaGnAUxDUPV2MEFhAW0cR9uhGAQ4ol&latitude=' + latitude +'&longitude=' + longitude,
     type: 'GET',
     dataType: 'json'
-  })
-  .success(function(data) {
+})
+ .success(function(data) {
     var list = [];
     $.each(data, function(key, value) {
- 
+
       var value2 = value.city_name + "(" + value.airport +")";
       var airport_name = value.airport_name +"( " +value.distance + " km)";
       // alert(value.airport_name);
@@ -208,8 +328,8 @@ $("#from-input").focusin(function() {
     });
     awesomplete.list = list;
     $("#input_img").attr('src', 'image/location2.png');
-   
-  });
+
+});
 });
             });
 
@@ -227,14 +347,15 @@ $("#from-input").focusin(function() {
  <body id="page-top" class="index">
 
     <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top" ">
+    <!-- <div class="nav-background"></div> --> <!--blur background-->
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Travel.easy</a>
+                <a id="logo" class="navbar-brand page-scroll" href="#page-top">Travel.easy</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -261,96 +382,190 @@ $("#from-input").focusin(function() {
                     <li>
                         <li class="dropdown" style="margin-left: 400px;">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-user"></span>  Login<span class="caret"></span></a>
-                            <ul id="login-dp" class="dropdown-menu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            Login with
-                                            <div class="social-buttons">
-                                                <a href="#" class="btn btn-fb"> Facebook</a>
-                                                <a href="#" class="btn btn-tw">Twitter</a>
-                                            </div>
-                                            or
-                                            <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                                <div class="form-group">
-                                                    <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                <span class="glyphicon glyphicon-user"></span>  Login<span class="caret"></span></a>
+                                <ul id="login-dp" class="dropdown-menu">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                Login with
+                                                <div class="social-buttons">
+                                                    <a href="#" class="btn btn-fb"> Facebook</a>
+                                                    <a href="#" class="btn btn-tw">Twitter</a>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                                    <div class="help-block text-right"><a href="" style="
-                                                        color: #428bca;">Forget the password ?</a></div>
+                                                or
+                                                <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input type="checkbox"> Keep me logged-in
-                                                        </label>
-                                                    </div>
-                                                </form>
+                                                        <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                                        <div class="help-block text-right"><a href="" style="
+                                                            color: #428bca;">Forget the password ?</a></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox"> Keep me logged-in
+                                                            </label>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="bottom text-center">
+                                                    New here ? <a href="#dangky" class="portfolio-link" data-toggle="modal"  style=" 
+                                                    color: #428bca;"><b>Join Us</b></a>
+                                                </div>
                                             </div>
-                                            <div class="bottom text-center">
-                                                New here ? <a href="#dangky" class="portfolio-link" data-toggle="modal"  style=" 
-                                                color: #428bca;"><b>Join Us</b></a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
                             </li>
-
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
                 </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
+                <!-- /.container-fluid -->
+            </nav>
 
-        <!-- Header -->
-        <header>
+            <!-- Header -->
+            <header style="position: relative;">
+                <div class="background"></div>
+                <div class="container" >
+                    <div id="input-container" class="intro-text" style="    position: relative">
+                        <div class="intro-lead-in">Let find some flight deals</div>
+                        <div class="return-txt" style="text-align:justify">
+                        
+                        <label  id="return" class="flight-type" style=" margin-left: 55px;" >Return</label>&nbsp;
+                        
+                        <label id="one-way" class="flight-type-unselected">One-way</label>
+                        </div>
+                        
+                        <form action="php/result-handling.php" method="get">
+                        <div id="input_container" >
 
-            <div class="container" >
-                <div class="intro-text" style="    position: relative">
-                    <div class="intro-lead-in">Let find some flight deals</div>
-                    <div class="return-txt" style="text-align:justify"><a style="font-size: 16px;     margin-left: 55px;     color: white;"><b>Return</b>&nbsp;</a> <a style="font-size: 16px; color: white;"><b>One-way</b></a> </div>
-                    <div id="input_container" >
+                            <input id="from-input" name="from_airport" data-minchars="0" class=" input Location-input "  placeholder="From"  required>
+                            <img id="input_img" src="image/location2.png " />
+                            <div id="loader" style="display: none;"></div>
 
-                        <input id="from-input"  data-minchars="0" class=" input Location-input "  placeholder="From"  >
-                        <img id="input_img" src="image/location2.png " />
-                        <div id="loader" style="display: none;"></div>
-
-                        <input id="to-input" class="  input Location-input  " placeholder="To">
-                       
-                       
-
-                        <script src="js/awesomplete_new.js"></script>
-
-                        <!--  <div class="airport-holder-to" style="display: none; overflow: scroll;  height:200px">     -->            
-
-
-                        <input id="start_date"
-                        type="text"  class="input dateinput " name="start_date" placeholder="Depart">
-                        <input id="end_date"
-                        type="text" class="input dateinput" name="end_date" placeholder="Return">
+                            <input id="to-input" name="to_airport" class="  input Location-input  " placeholder="To" required>
 
 
 
-                        <input id="testloca" class="input Location-input "  placeholder="To">
+                            <!--  <div class="airport-holder-to" style="display: none; overflow: scroll;  height:200px">     -->            
 
-                        <a href="#services" class="btn-search">Search</a>
-                    </div>   
+
+                            <input id="start_date"
+                            type="text"  class="input dateinput " name="start_date" placeholder="Depart" value="" required>
+                            <input id="end_date"
+                            type="text" class="input dateinput" name="end_date" value="" placeholder="Return">
+
+
+
+                            <input id="flight-option"  class="input  option-flight "  placeholder="Options" readonly>
+
+                            <input type="submit" id="search-button" class="btn-search" value="Search">
+                             <!-- <script src="js/search_handling.js"></script> -->
+
+                        </div> 
+                 
+                                 <div id="option_container" style="visibility: hidden;" >
+                                <!-- <img src="image/triangle.png" style="align-content:right "> -->
+                                <div class="option_container-margin">
+                                    <!--- count -->
+      <script src="js/people_count.js"></script>
+                                    <table>
+                                        <tr >
+
+                                            <td colspan="2" style="
+                                            border-top-width: 10px;
+                                            padding-top: 15px;"">
+                                            <label class="option-label">Class</label>
+                                            <select id="class-select" name="classes" class="option-input-select  " placeholder="To" >
+                                              <option value="ECONOMY"> Economy</option>
+                                              <option value="PREMIUM_ECONOMY"> Premium Economy</option>
+                                              <option value="BUSINESS">Bussiness</option>
+                                              <option value="FIRST">First</option>
+                                          </select>
+                                          <div class="divider"></div>
+                                      </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                       <label class="option-label">Adults</label>
+                                       
+                                        <button id="adults-minus"  type="button" class="button button-primary button-circle button-small"><i class="fa fa-minus"></i></button>
+                                      
+                                       <input id="adults-count" name="adults" class="option-label option-number count-size" style="padding-right: 0px;" readonly value="1">
+                                         <button id="adults-plus"  type="button" class="button button-primary button-circle button-small"><i class="fa fa-plus"></i></button>
+                                      
+                                   </td>
+                                   <td>
+                                      <label class="option-label ">Currency</label>
+                                      <select  id="currency-select" name="currency" class="option-input-select" style="width: 100px; height: 35px" >
+                                        <option value="VND">VND</option>
+                                        <option value="USD">USD</option>
+                                        <option value="EUR">EUR</option>
+                                    </select>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td    style="padding-left: 20px;" >
+                                   <label class="option-label">Children</label>
+                                  
+                                    <button id="children-minus"  type="button" class="button button-primary button-circle button-small"><i class="fa fa-minus"></i></button>
+                                   <input id="children-count" name="children" class="option-label option-number count-size" style="padding-right: 0px;" readonly value="0">
+                                   <button id="children-plus"  type="button" class="button button-primary button-circle button-small"><i class="fa fa-plus"></i></button>
+                               </td>
+                               <td>    
+                                <label class="option-label">Max Price</label>
+                                <input type="number" name="maxPrice" id="maxPrice-input" class="maxPrice" placeholder="500,000" style="color: black">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 28px;">
+                               <label class="option-label">Infants</label>
+                               <button id="infants-minus"  type="button" class="button button-primary button-circle button-small"><i class="fa fa-minus"></i></button>
+                               <input id="infants-count" name="infants" class="option-label option-number count-size" style="padding-right: 0px;" readonly value="0">
+                            <button id="infants-plus"  type="button" class="button button-primary button-circle button-small"><i class="fa fa-plus"></i></button>
+                           </td>
+                           <td>
+                            <input id="nonstop-cb" name="nonstop" type="checkbox" class="styled-checkbox" value="true" >
+                            <label for="nonstop-cb"  id="nonstop-label" class="domestic-cb-text" style=" color: black;">Non-stop Flights</label>
+
+                        </td>
+                    </tr>
+
+
+                </table>
+                <
+            </div> 
+        </div>
+    
+    <div class="check-container" style="padding-top: 5px">
+        <input id="from-domestic" type="checkbox" class="styled-checkbox">
+        <label for="from-domestic" id="from-check" class="domestic-cb-text" style="margin-right: 35px; visibility: hidden;">Domestic Airport Only</label> 
+        <input id="to-domestic" type="checkbox" class="styled-checkbox">
+        <label for="to-domestic" id="to-check" class="domestic-cb-text" style=" visibility: hidden;">Domestic Airport Only</label>
+    </div>
+
+    <!-- data handle for input -->
+    <script src="js/awesomplete_new.js"></script>
 
 </div>
-            </div>
+</form>
+
+</div>
 
 
 
 
-        </header>
+</header>
     <!-- Services Section 
     <section id="services">
         <div class="container">
@@ -1212,7 +1427,7 @@ $("#from-input").focusin(function() {
         <script>
          var start_date = new Pikaday({
            numberOfMonths: 2,
-           format: 'YYYY/MM/DD',
+           format: 'YYYY-MM-DD',
            minDate: new Date(),
            field: document.getElementById('start_date'),
            onSelect: function() {
@@ -1221,10 +1436,12 @@ $("#from-input").focusin(function() {
     });
          var end_date = new Pikaday({
            numberOfMonths: 2,
-           format: 'YYYY/MM/DD',
+           format: 'YYYY-MM-DD',
+           minDate: new Date(),
            field: document.getElementById('end_date'),
            onSelect: function() {
             start_date.setMaxDate(this.getDate());
+
         }
     });
 
