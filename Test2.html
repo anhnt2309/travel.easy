@@ -162,7 +162,8 @@
                     $("#return").removeClass('animated jello')
                   });
 
-                  
+                 
+
 
                  $("#end_date").show();
                  $("#start_date").css('width', '135');
@@ -217,7 +218,7 @@
               $("#from-input").focus();
           });
             $(window).scroll(function(){
-                $(".intro-text").css("opacity", 1 - $(window).scrollTop() / 250);
+                $(".intro-text").css("opacity", 1.2 - $(window).scrollTop() / 250);
             });
             $("#input_img").hover(function(){
                 $("#input_img").attr('src', 'image/location_focus.png');
@@ -300,7 +301,7 @@
                 // });
                 $("#from-input").focus();
                 $("#from-input").focusin(function() {
-    // alert("a");
+    
 
 
     var searchTerm;
@@ -355,12 +356,12 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a id="logo" class="navbar-brand page-scroll" href="#page-top">Travel.easy</a>
+                <a id="logo"  style="-webkit-animation-delay: 1.5s" class="navbar-brand page-scroll" href="#page-top">Travel.easy</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right" id="nav_load" style="-webkit-animation-delay: 1.5s">
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
@@ -381,7 +382,7 @@
                     </li>
                     <li>
                         <li class="dropdown" style="margin-left: 400px;">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="login" style="border-radius: 3px;">
                                 <span class="glyphicon glyphicon-user"></span>  Login<span class="caret"></span></a>
                                 <ul id="login-dp" class="dropdown-menu">
                                     <li>
@@ -435,11 +436,42 @@
             <header style="position: relative;">
                 <div class="background"></div>
                 <div class="container" >
-                    <div id="input-container" class="intro-text" style="    position: relative">
-                        <div class="intro-lead-in">Let find some flight deals</div>
+                    <div id="input-container"  style="-webkit-animation-delay: 1s" class="intro-text" style="    position: relative">
+                        <script src="js/typed.js"></script>
+                        <script>
+                          $(function(){
+                            $(".typed-text").typed({
+                              strings: ["Across Airlines.^5000" ,"World Wide Filghts.^5000","Việt Nam.^5000"],
+                              typeSpeed: 0,
+                              startDelay: 500,
+                              backDelay: 500,
+                              // // Fade out instead of backspace (must use CSS class)
+                              // fadeOut: true,
+                              // fadeOutClass: 'typed-fade-out',
+                              // fadeOutDelay: 300, // milliseconds
+                              // loop
+                              loop: true,
+                              // null = infinite
+                              loopCount: null,
+                              // show cursor
+                              showCursor: true,
+                              // character for cursor
+                              cursorChar: "|",
+                              // attribute to type (null == text)
+                              attr: null,
+                              // either html or text
+                              contentType: 'html',
+                            });
+                          });
+                        </script>
+                        <div style="display: flex;">
+                        <div id="fixed_txt" class="fixed-text text-typed-defaut">Compare Prices  </div><br>
+                        <span class="typed-text text-typed-defaut"> </span>
+                        </div>
+
                         <div class="return-txt" style="text-align:justify">
                         
-                        <label  id="return" class="flight-type" style=" margin-left: 55px;" >Return</label>&nbsp;
+                        <label  id="return" class="flight-type" style=" margin-left: 56px;" >Return</label>&nbsp;
                         
                         <label id="one-way" class="flight-type-unselected">One-way</label>
                         </div>
