@@ -10,9 +10,8 @@
 $latitude = $_GET["latitude"];
 $longtitude = $_GET["longtitude"];
 
-
 // echo $latitude ."<br>";
-// echo $longtitude;
+// echo "alert(".$longtitude.")";
 
 $curl = curl_init();
 
