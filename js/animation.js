@@ -7,7 +7,15 @@ $(document).ready(function(){
 	});
 
 	$("#input-container").addClass('animated bounceInDown');
-	$("#logo").addClass('animated rubberBand');
+	$("#logo").addClass('animated rotateIn');
+	$("#nav_load").addClass('animated bounceInDown');
+	$(".background").addClass('animated fadeIn');
 
+	$("#login").click(function(){
+		$("#login").addClass('animated pulse');
+		$('#login').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+			$("#login").removeClass('animated pulse')
+		});
+	});
 	
 });
