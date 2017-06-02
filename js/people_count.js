@@ -13,7 +13,7 @@ $("#adults-minus").click(function(){
 	if(adults > 1){
 	adults = adults -1;
 	}
-	if(infants >= adults){
+	if(infants > adults){
 		infants = infants -1;
 		$("#infants-count").val(infants);
 	}
