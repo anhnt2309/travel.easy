@@ -134,8 +134,19 @@
 
 
 <script src="js/wow.min.js"></script>
+
+<script src="js/aos.js"></script>
+  <link rel="stylesheet" href="css/aos.css">
+  <script>
+   AOS.init({
+  duration: 1200,
+})
+  </script>
+
+
 <script src="js/scrollspy.js"></script>  
-              <script>
+            <!--   <script>
+            
               new WOW().init();
               WOW.prototype.addBox = function(element){
                   this.boxes.push(element);
@@ -148,7 +159,7 @@
                   }).removeClass('animated');
                   wow.addBox(this);
               });
-              </script>
+              </script> -->
 
         <script >
           $(document).ready(function(){
@@ -672,7 +683,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-sm-6 portfolio-item  wow bounceInUp">
+                <div  class="col-md-4 col-sm-6 portfolio-item  wow bounceInUp">
                     <a href="#portfolioModal1" class="portfolio-link " data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -849,7 +860,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-sm-6 portfolio-item">
+                <div data-aos="zoom-out"  class="col-md-4 col-sm-6 portfolio-item aos-init aos-animate">
                     <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                         <div class="portfolio-hover">
                             <div class="portfolio-hover-content">
@@ -1503,7 +1514,7 @@
 
         }
     });
-
+       
          jQuery(document).on('change', '.pika-select-month', function() {
             pika_modif_date('month', this.value);
         });
