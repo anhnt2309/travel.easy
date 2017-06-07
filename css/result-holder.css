@@ -1474,5 +1474,5 @@ bottom: 0px;
 .disable-button{
     cursor: default;
     pointer-events: none;
-     color: gainsboro
+     color: gainsboro !important;
 }
