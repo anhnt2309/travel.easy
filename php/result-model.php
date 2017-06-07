@@ -62,6 +62,15 @@
 		}
 	}
 
+	class ReturnFlight{
+		public $departFlight;
+		public $returnFlight;
+		public function __construct($departFlight,$returnFlight){
+			$this->departFlight = $departFlight;
+			$this->returnFlight= $returnFlight;
+		}
+	}
+
 
 
  ?>
