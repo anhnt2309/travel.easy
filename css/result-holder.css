@@ -1,5 +1,6 @@
 #ARTICLE_1 {
     bottom: 0px;
+        margin-bottom: 20px;
     box-sizing: border-box;
     color: rgb(82, 76, 97);
     cursor: pointer;
