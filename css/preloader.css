@@ -102,7 +102,7 @@ html, body {
   line-height: 24px;
 }
 
-.pagination{
+.pagination-custom{
 	text-align: center;
 }
 
@@ -162,7 +162,7 @@ html, body {
 }
 
 .pagination-link--wide:hover {
-  color: #fa4248;
+  color: #fed136;;
 }
 
 .pagination-link--wide.first:before,
@@ -188,6 +188,8 @@ html, body {
   margin-left: 0.5em;
 }
 
+
+
 #pagin ul {
   padding: 0;
   width: 50%;
@@ -208,6 +210,6 @@ html, body {
     /* height: 50%; */
     width: 50%;
     /* background-color: rebeccapurple; */
-    /* align-items: center; */
-    left: 30%;
+    /* align-itßems: center; */
+    left: 10%;
 }
