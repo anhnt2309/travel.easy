@@ -4,6 +4,7 @@ class Airline{
   public $name;
   public $country;
   public $website;
+  public $website2;
   public $countryFlag;
 }
 
@@ -65,6 +66,7 @@ function getAirlines($iataCode){
       if ($index == 0) {
           // echo $element2->href ."<br>";
         $airline->website = $element2->href;
+        $airline->website2 =$element2->href;
       }
 
     }
@@ -137,7 +139,8 @@ function displayNoStopResult($allFlights,$departs_time,$arrive_time,$flight_dura
                             // echo '<br>';
  }
 
-function displayHasStopResult($allFlights,$departs_time,$arrive_time,$flight_duration){
+function displayHasStopResult($allFlights,$first_departs_time,$second_arrive_time,$total_flight_duration){
+
   // echo "<article id='ARTICLE_1' class='content'>";
   //                           echo '<div id="DIV_2">';
   //                           echo '<div id="DIV_3">';
@@ -151,10 +154,10 @@ function displayHasStopResult($allFlights,$departs_time,$arrive_time,$flight_dur
                             echo '</div>';
                             echo '<div id="DIV_10">';
                             echo '<div id="DIV_11">';
-                            echo "<span id='SPAN_12'><span id='SPAN_13'>".$departs_time."</span><span id='SPAN_14'>".$allFlights->firstHalfFlight->origin_airport."</span></span>";
+                            echo "<span id='SPAN_12'><span id='SPAN_13'>".$first_departs_time."</span><span id='SPAN_14'>".$allFlights->firstHalfFlight->origin_airport."</span></span>";
                             echo '</div>';
                             echo '<div id="DIV_15">';
-                            echo "<span id='SPAN_16'>".$flight_duration."</span>";
+                            echo "<span id='SPAN_16'>".$total_flight_duration."</span>";
                             echo '<ul id="UL_17">';
                             echo '<li id="LI_18">';
                             echo '<li class="stop-dot"></li>';
@@ -166,7 +169,7 @@ function displayHasStopResult($allFlights,$departs_time,$arrive_time,$flight_dur
                             echo '</div>';
                             echo '</div>';
                             echo '<div id="DIV_22">';
-                            echo "<span id='SPAN_23'><span id='SPAN_24'>".$arrive_time."</span><span id='SPAN_25'>".$allFlights->secondHalfFlight->destination_airport."</span></span>";
+                            echo "<span id='SPAN_23'><span id='SPAN_24'>".$second_arrive_time."</span><span id='SPAN_25'>".$allFlights->secondHalfFlight->destination_airport."</span></span>";
                             echo '</div>';
                             echo '<div id="DIV_26">';
                             echo '</div>';
@@ -192,6 +195,276 @@ function displayHasStopResult($allFlights,$departs_time,$arrive_time,$flight_dur
                             // echo '</div>';
                             // echo '</article>';
                             // echo '<br>';
+}
+
+function noStopFlightDetail($departs_date,$departs_time,$arrive_date,$arrive_time,$from_airport,$to_airport,$airline,$allFlights,$flight_duration,$aircraft,$total_money){
+  echo "<section class=\"panel-content\" id=\"result_detail_id_SECTION_1\">\n"; 
+echo "   <div class=\"leg-heading\" id=\"result_detail_id_DIV_2\">\n"; 
+echo "      <h4 class=\"new-leg-title leg-0 \" id=\"result_detail_id_H4_3\">Depart</h4>\n"; 
+echo "      <h6 class=\"text-base leg-date date-label\" id=\"result_detail_id_H6_4\">$departs_date</h6>\n"; 
+echo "   </div>\n"; 
+echo "   <div class=\"itinerary-leg chevron-toggle\" id=\"result_detail_id_DIV_5\" >\n"; 
+echo "      <div class=\"leg-summary clearfix   opened\" id=\"result_detail_id_DIV_6\">\n"; 
+echo "         <section data-id=\"0\" class=\"card-main leg clearfix\" id=\"result_detail_id_SECTION_7\">\n"; 
+echo "            <div class=\"leg-details compact-view\" id=\"result_detail_id_DIV_8\">\n"; 
+echo "               <div class=\"depart\" id=\"result_detail_id_DIV_9\"><span class=\"station-tooltip\" data-id=\"16240\" id=\"result_detail_id_SPAN_10\"><span class=\"times\" id=\"result_detail_id_SPAN_11\">$departs_time</span><span class=\"stop-station\" data-id=\"16240\" id=\"result_detail_id_SPAN_12\">$from_airport</span></span></div>\n"; 
+echo "               <div class=\"stops\" id=\"result_detail_id_DIV_13\">\n"; 
+echo "                  <span class=\"duration\" id=\"result_detail_id_SPAN_14\">&nbsp;</span>\n"; 
+echo "                  <ul class=\"stop-line\" id=\"result_detail_id_UL_15\">\n"; 
+echo "                     <li class=\"stop-line\" id=\"result_detail_id_LI_16\"></li>\n"; 
+
+echo "                  </ul>\n"; 
+echo "                  <div class=\"leg-stops no-stops\" id=\"result_detail_id_DIV_17\"><span class=\"leg-stops-green leg-stops-label\" id=\"result_detail_id_SPAN_18\">Non-stop </span><span class=\"leg-stops-station\" id=\"result_detail_id_SPAN_19\"></span></div>\n"; 
+echo "               </div>\n"; 
+echo "               <div class=\"arrive\" id=\"result_detail_id_DIV_20\"><span class=\"station-tooltip\" data-id=\"11036\" id=\"result_detail_id_SPAN_21\"><span class=\"times\" id=\"result_detail_id_SPAN_22\">$arrive_time</span><span class=\"stop-station\" data-id=\"11036\" id=\"result_detail_id_SPAN_23\">$to_airport</span></span></div>\n"; 
+echo "               <div class=\"clearfix\" id=\"result_detail_id_DIV_24\"></div>\n"; 
+echo "            </div>\n"; 
+echo "            <div class=\"leg-operator\" id=\"result_detail_id_DIV_25\">Operated by $airline->name Airlines</div>\n"; 
+echo "         </section>\n"; 
+echo "         <div class=\"show-btn   opened\" data-id=\"0\" data-hide-text=\"Ẩn\" data-show-text=\"Chi tiết\" id=\"result_detail_id_DIV_26\"><span class=\"details-chevron\" id=\"result_detail_id_SPAN_27\"></span></div>\n"; 
+echo "      </div>\n"; 
+echo "      <div data-id=\"0\" class=\"expanded-details leg-details leg-0 collapsible\" id=\"result_detail_id_DIV_28\">\n"; 
+echo "         <div class=\"segment-airline segment-row\" id=\"result_detail_id_DIV_29\"><img class=\"small-logo\" src=\"http://pics.avs.io/70/24/$allFlights->marketing_airline.png\" alt=\"Jetstar\" onerror=\"__imgErrRemove__(this)\" id=\"result_detail_id_IMG_30\"><span class=\"operated-by text-sm\" id=\"result_detail_id_SPAN_31\">$airline->name $allFlights->operating_airline$allFlights->flight_number </span></div>\n"; 
+echo "         <div class=\"segment-row flight-row\" id=\"result_detail_id_DIV_32\">\n"; 
+echo "            <div class=\" col duration text-sm modal-duration\" id=\"result_detail_id_DIV_33\">$flight_duration</div>\n"; 
+echo "            <div class=\"segment-details\" id=\"result_detail_id_DIV_34\">\n"; 
+echo "               <div class=\"departure segment-row\" id=\"result_detail_id_DIV_35\">\n"; 
+echo "                  <div class=\"stop-line-vert depart-line col\" id=\"result_detail_id_DIV_36\"></div>\n"; 
+echo "                  <div class=\"times fss-bold col\" id=\"result_detail_id_DIV_37\">$departs_time</div>\n"; 
+echo "                  <div class=\"route col\" id=\"result_detail_id_DIV_38\">$from_airport  </div>\n"; 
+echo "               </div>\n"; 
+echo "               <div class=\"destination segment-row\" id=\"result_detail_id_DIV_39\">\n"; 
+echo "                  <div class=\"stop-line-vert arrival-line col\" id=\"result_detail_id_DIV_40\"></div>\n"; 
+echo "                  <div class=\"times col\" id=\"result_detail_id_DIV_41\">$arrive_time</div>\n"; 
+echo "                  <div class=\"route col\" id=\"result_detail_id_DIV_42\">$to_airport </div>\n"; 
+echo "               </div>\n"; 
+echo "               <div class=\"segment-row split-duration\" id=\"result_detail_id_DIV_43\">\n"; 
+echo "                  <div class=\"col\" id=\"result_detail_id_DIV_44\"></div>\n"; 
+echo "                  <div class=\"duration text-sm col\" id=\"result_detail_id_DIV_45\">$flight_duration</div>\n"; 
+echo "               </div>\n"; 
+echo "            </div>\n"; 
+
+echo "<a href=\"$airline->website\" class=\"fss-bpk-button action-select\" title=\"Mở trong cửa sổ mới\" data-deeplink=\"direct\" data-agent-id=\"alow\" data-is-airline=\"false\" data-select-id=\"null\" target=\"_blank\" style=\"
+    float: right;
+     position: absolute;
+    right: 2px;
+    /* padding: 10px 16px; */
+    display: inline-block;
+    margin: px;
+    padding: .375rem 1.125 rem;
+    border: 0;
+    border-radius: 1.125rem;
+    background-color: #fed136;
+    background-image: linear-gradient(-180deg,#fed136,#fed136);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: none;
+    cursor: pointer;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* position: relative; */
+    width: 20%;
+    height: 50%;
+\"><span class=\"cta-small-text has-cta-icon\" style=\"
+    font-size: 10px;
+\">$total_money</span><span class=\"bpk-icon-sm bpk-icon-pointer bpk-icon-sm--align-to-button\"></span></a>";
+
+echo "         </div>\n"; 
+
+echo "         <div class=\"arrival-info text-sm\" id=\"result_detail_id_DIV_46\">\n"; 
+echo "            <div class=\"arrival\" id=\"result_detail_id_DIV_47\" style=\"width: 30%;\"><strong id=\"result_detail_id_STRONG_48\">Arrive:</strong> $arrive_date</div>\n"; 
+echo "            <div class=\"total-duration\" id=\"result_detail_id_DIV_49\" style=\"width: 30%;\"><strong id=\"result_detail_id_STRONG_50\">Flight Duration:</strong> $flight_duration</div>\n";
+echo "<div class=\"total-duration\" id=\"result_detail_id_DIV_49\" style=\"
+    width: 30%;
+\"><strong id=\"result_detail_id_STRONG_50\">Aircraft:</strong><p style=\"font-size: 10px;display: inline; \">$aircraft</p></div>"; 
+echo "         </div>\n"; 
+echo "      </div>\n"; 
+echo "   </div>\n"; 
+// echo "</section>\n";
+}
+
+
+function hasStopFlightDetail($first_arrive_date,$first_departs_date,$second_departs_date,$second_arrive_date,$first_arrive_time,$first_departs_time,$second_arrive_time,$second_departs_time,$from_airport,$to_airport,$airline,$allFlights,$first_flight_duration,$second_flight_duration,$first_aircraft,$second_aircraft,$currency,$stop_flight_duration){
+
+  // echo "<pre>";
+  // print_r($allFlights);
+  // echo "<pre>";
+
+  $firstHalfFlight = $allFlights->firstHalfFlight;
+  $secondHalfFlight =$allFlights->secondHalfFlight;
+
+  $first_price = number_format((int)$firstHalfFlight->total_price).$currency;
+  
+  $second_price = number_format((int)$secondHalfFlight->total_price).$currency;
+  // echo "abc".$airline->website2;
+
+  echo "<section class=\"panel-content\" id=\"result_detail_id_SECTION_1\">\n"; 
+echo "   <div class=\"leg-heading\" id=\"result_detail_id_DIV_2\">\n"; 
+echo "      <h4 class=\"new-leg-title leg-0 \" id=\"result_detail_id_H4_3\">Depart</h4>\n"; 
+echo "      <h6 class=\"text-base leg-date date-label\" id=\"result_detail_id_H6_4\">$first_departs_date</h6>\n"; 
+echo "   </div>\n"; 
+echo "   <div class=\"itinerary-leg chevron-toggle\" id=\"result_detail_id_DIV_5\" style=\"height: 400px;\">\n"; 
+echo "      <div class=\"leg-summary clearfix   opened\" id=\"result_detail_id_DIV_6\">\n"; 
+echo "         <section data-id=\"0\" class=\"card-main leg clearfix\" id=\"result_detail_id_SECTION_7\">\n"; 
+echo "            <div class=\"leg-details compact-view\" id=\"result_detail_id_DIV_8\">\n"; 
+echo "               <div class=\"depart\" id=\"result_detail_id_DIV_9\"><span class=\"station-tooltip\" data-id=\"16240\" id=\"result_detail_id_SPAN_10\"><span class=\"times\" id=\"result_detail_id_SPAN_11\">$first_departs_time</span><span class=\"stop-station\" data-id=\"16240\" id=\"result_detail_id_SPAN_12\">$firstHalfFlight->origin_airport</span></span></div>\n"; 
+echo "               <div class=\"stops\" id=\"result_detail_id_DIV_13\">\n"; 
+echo "                  <span class=\"duration\" id=\"result_detail_id_SPAN_14\">$stop_flight_duration (stop)</span>\n"; 
+echo "                  <ul class=\"stop-line\" id=\"result_detail_id_UL_15\">\n"; 
+echo "                     <li class=\"stop-line\" id=\"result_detail_id_LI_16\"></li>\n"; 
+echo "                    <li class=\"stop-dot\"></li>";
+echo "                  </ul>\n"; 
+echo "                   <span id='SPAN_20' style='color:red'>"."1 Stop "."</span><span id='SPAN_21'></span>";
+                            echo "<span class=\"leg-stops-station\" style=\"color: #524c61;\"><span class=\"stop-station\" data-id=\"12071\" style=\"cursor: help;line-height: 1.125rem;\" aria-describedby=\"int2\">$secondHalfFlight->origin_airport</span></span>";
+echo "               </div>\n"; 
+echo "               <div class=\"arrive\" id=\"result_detail_id_DIV_20\"><span class=\"station-tooltip\" data-id=\"11036\" id=\"result_detail_id_SPAN_21\"><span class=\"times\" id=\"result_detail_id_SPAN_22\">$first_arrive_time</span><span class=\"stop-station\" data-id=\"11036\" id=\"result_detail_id_SPAN_23\">$secondHalfFlight->destination_airport</span></span></div>\n"; 
+echo "               <div class=\"clearfix\" id=\"result_detail_id_DIV_24\"></div>\n"; 
+echo "            </div>\n"; 
+echo "            <div class=\"leg-operator\" id=\"result_detail_id_DIV_25\">Operated by $airline->name Airlines</div>\n"; 
+echo "         </section>\n"; 
+echo "         <div class=\"show-btn   opened\" data-id=\"0\" data-hide-text=\"Ẩn\" data-show-text=\"Chi tiết\" id=\"result_detail_id_DIV_26\"><span class=\"details-chevron\" id=\"result_detail_id_SPAN_27\"></span></div>\n"; 
+echo "      </div>\n"; 
+echo "      <div data-id=\"0\" class=\"expanded-details leg-details leg-0 collapsible\" id=\"result_detail_id_DIV_28\">\n"; 
+echo "         <div class=\"segment-airline segment-row\" id=\"result_detail_id_DIV_29\"><img class=\"small-logo\" src=\"http://pics.avs.io/70/24/$firstHalfFlight->marketing_airline.png\" alt=\"Jetstar\" onerror=\"__imgErrRemove__(this)\" id=\"result_detail_id_IMG_30\"><span class=\"operated-by text-sm\" id=\"result_detail_id_SPAN_31\">$airline->name $firstHalfFlight->operating_airline$firstHalfFlight->flight_number </span></div>\n"; 
+echo "         <div class=\"segment-row flight-row\" id=\"result_detail_id_DIV_32\">\n"; 
+echo "            <div class=\" col duration text-sm modal-duration\" id=\"result_detail_id_DIV_33\">$first_flight_duration</div>\n"; 
+echo "            <div class=\"segment-details\" id=\"result_detail_id_DIV_34\">\n"; 
+echo "               <div class=\"departure segment-row\" id=\"result_detail_id_DIV_35\">\n"; 
+echo "                  <div class=\"stop-line-vert depart-line col\" id=\"result_detail_id_DIV_36\"></div>\n"; 
+echo "                  <div class=\"times fss-bold col\" id=\"result_detail_id_DIV_37\">$first_departs_time</div>\n"; 
+echo "                  <div class=\"route col\" id=\"result_detail_id_DIV_38\">$firstHalfFlight->origin_airport </div>\n"; 
+echo "               </div>\n"; 
+echo "               <div class=\"destination segment-row\" id=\"result_detail_id_DIV_39\">\n"; 
+echo "                  <div class=\"stop-line-vert arrival-line col\" id=\"result_detail_id_DIV_40\"></div>\n"; 
+echo "                  <div class=\"times col\" id=\"result_detail_id_DIV_41\">$first_arrive_time</div>\n"; 
+echo "                  <div class=\"route col\" id=\"result_detail_id_DIV_42\">$firstHalfFlight->destination_airport </div>\n"; 
+echo "               </div>\n"; 
+echo "               <div class=\"segment-row split-duration\" id=\"result_detail_id_DIV_43\">\n"; 
+echo "                  <div class=\"col\" id=\"result_detail_id_DIV_44\"></div>\n"; 
+echo "                  <div class=\"duration text-sm col\" id=\"result_detail_id_DIV_45\">$flight_duration</div>\n"; 
+echo "               </div>\n"; 
+echo "            </div>\n"; 
+
+echo "<a href=\"$airline->website\" class=\"fss-bpk-button action-select\" title=\"Mở trong cửa sổ mới\" data-deeplink=\"direct\" data-agent-id=\"alow\" data-is-airline=\"false\" data-select-id=\"null\" target=\"_blank\" style=\"
+    float: right;
+     position: absolute;
+    right: 2px;
+    /* padding: 10px 16px; */
+    display: inline-block;
+    margin: px;
+    padding: .375rem 1.125 rem;
+    border: 0;
+    border-radius: 1.125rem;
+    background-color: #fed136;
+    background-image: linear-gradient(-180deg,#fed136,#fed136);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: none;
+    cursor: pointer;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* position: relative; */
+    width: 20%;
+    height: 50%;
+\"><span class=\"cta-small-text has-cta-icon\" style=\"
+    font-size: 10px;
+\">$first_price</span><span class=\"bpk-icon-sm bpk-icon-pointer bpk-icon-sm--align-to-button\"></span></a>";
+
+echo "         </div>\n"; 
+
+echo "         <div class=\"arrival-info text-sm\" id=\"result_detail_id_DIV_46\">\n"; 
+echo "            <div class=\"arrival\" id=\"result_detail_id_DIV_47\" style=\"width: 30%;\"><strong id=\"result_detail_id_STRONG_48\">Arrive:</strong> $first_arrive_date</div>\n"; 
+echo "            <div class=\"total-duration\" id=\"result_detail_id_DIV_49\" style=\"width: 30%;\"><strong id=\"result_detail_id_STRONG_50\">Flight Duration:</strong> $first_flight_duration</div>\n";
+echo "<div class=\"total-duration\" id=\"result_detail_id_DIV_49\" style=\"
+    width: 30%;
+\"><strong id=\"result_detail_id_STRONG_50\">Aircraft:</strong><p style=\"font-size: 10px;display: inline; \">$first_aircraft</p></div>"; 
+echo "         </div>\n"; 
+echo "      </div>\n";
+
+echo "      <div data-id=\"0\" class=\"expanded-details leg-details leg-0 collapsible\" id=\"result_detail_id_DIV_28\">\n"; 
+echo "         <div class=\"segment-airline segment-row\" id=\"result_detail_id_DIV_29\"><img class=\"small-logo\" src=\"http://pics.avs.io/70/24/$secondHalfFlight->marketing_airline.png\" alt=\"Jetstar\" onerror=\"__imgErrRemove__(this)\" id=\"result_detail_id_IMG_30\"><span class=\"operated-by text-sm\" id=\"result_detail_id_SPAN_31\">$airline->name $secondHalfFlight->operating_airline$secondHalfFlight->flight_number </span></div>\n"; 
+echo "         <div class=\"segment-row flight-row\" id=\"result_detail_id_DIV_32\">\n"; 
+echo "            <div class=\" col duration text-sm modal-duration\" id=\"result_detail_id_DIV_33\">$second_flight_duration</div>\n"; 
+echo "            <div class=\"segment-details\" id=\"result_detail_id_DIV_34\">\n"; 
+echo "               <div class=\"departure segment-row\" id=\"result_detail_id_DIV_35\">\n"; 
+echo "                  <div class=\"stop-line-vert depart-line col\" id=\"result_detail_id_DIV_36\"></div>\n"; 
+echo "                  <div class=\"times fss-bold col\" id=\"result_detail_id_DIV_37\">$second_departs_time</div>\n"; 
+echo "                  <div class=\"route col\" id=\"result_detail_id_DIV_38\">$secondHalfFlight->origin_airport  </div>\n"; 
+echo "               </div>\n"; 
+echo "               <div class=\"destination segment-row\" id=\"result_detail_id_DIV_39\">\n"; 
+echo "                  <div class=\"stop-line-vert arrival-line col\" id=\"result_detail_id_DIV_40\"></div>\n"; 
+echo "                  <div class=\"times col\" id=\"result_detail_id_DIV_41\">$second_arrive_time</div>\n"; 
+echo "                  <div class=\"route col\" id=\"result_detail_id_DIV_42\">$secondHalfFlight->destination_airport </div>\n"; 
+echo "               </div>\n"; 
+echo "               <div class=\"segment-row split-duration\" id=\"result_detail_id_DIV_43\">\n"; 
+echo "                  <div class=\"col\" id=\"result_detail_id_DIV_44\"></div>\n"; 
+echo "                  <div class=\"duration text-sm col\" id=\"result_detail_id_DIV_45\">$second_flight_duration</div>\n"; 
+echo "               </div>\n"; 
+echo "            </div>\n"; 
+
+echo "<a href=\"$airline->website2\" class=\"fss-bpk-button action-select\" title=\"Mở trong cửa sổ mới\" data-deeplink=\"direct\" data-agent-id=\"alow\" data-is-airline=\"false\" data-select-id=\"null\" target=\"_blank\" style=\"
+    float: right;
+     position: absolute;
+    right: 2px;
+    /* padding: 10px 16px; */
+    display: inline-block;
+    margin: px;
+    padding: .375rem 1.125 rem;
+    border: 0;
+    border-radius: 1.125rem;
+    background-color: #fed136;
+    background-image: linear-gradient(-180deg,#fed136,#fed136);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: none;
+    cursor: pointer;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* position: relative; */
+    width: 20%;
+    height: 50%;
+\"><span class=\"cta-small-text has-cta-icon\" style=\"
+    font-size: 10px;
+\">$second_price</span><span class=\"bpk-icon-sm bpk-icon-pointer bpk-icon-sm--align-to-button\"></span></a>";
+
+echo "         </div>\n"; 
+
+echo "         <div class=\"arrival-info text-sm\" id=\"result_detail_id_DIV_46\">\n"; 
+echo "            <div class=\"arrival\" id=\"result_detail_id_DIV_47\" style=\"width: 30%;\"><strong id=\"result_detail_id_STRONG_48\">Arrive:</strong> $second_arrive_date</div>\n"; 
+echo "            <div class=\"total-duration\" id=\"result_detail_id_DIV_49\" style=\"width: 30%;\"><strong id=\"result_detail_id_STRONG_50\">Flight Duration:</strong> $second_flight_duration</div>\n";
+echo "<div class=\"total-duration\" id=\"result_detail_id_DIV_49\" style=\"
+    width: 30%;
+\"><strong id=\"result_detail_id_STRONG_50\">Aircraft:</strong><p style=\"font-size: 10px;display: inline; \">$second_aircraft</p></div>"; 
+echo "         </div>\n"; 
+echo "      </div>\n"; 
+echo "   </div>\n"; 
+
+echo "   </div>\n"; 
+
+
+
+ echo "</section>\n";
 }
 
 ?>
