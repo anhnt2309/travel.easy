@@ -543,7 +543,7 @@ echo '</div>';
 echo '</div>';
 echo '</div>';
 echo '</article>';
-echo '<br>';
+// echo '<br>';
 
 
 }
@@ -613,7 +613,7 @@ echo '</div>';
 echo '</div>';
 
 echo '</article>';
-echo '<br>';
+// echo '<br class="content">';
 
 echo '<!-- Modal -->';
 echo "<div class='modal fade' id='myModal".$total_flight."' role='dialog'>";
@@ -704,7 +704,7 @@ if($total_duration_minute >60){
 $overall_duration_hour =$total_duration_hour + $stop_duration_object->h;
 
 $overall_duration_minute = $total_duration_minute +$stop_duration_object->i;
-echo $overall_duration_minute;
+// echo "";
 if($overall_duration_minute ==60){
      $overall_duration_hour = $overall_duration_hour +1;
      $overall_duration_minute =00;
@@ -747,8 +747,10 @@ echo '</div>';
 echo '</div>';
 echo '</div>';
 echo '</div>';
-echo '</article>';
 echo '<br>';
+echo '</article>';
+// echo '<br class="content">';
+
 
 echo '<!-- Modal -->';
 echo "<div class='modal fade' id='myModal".$total_flight."' role='dialog'>";
@@ -821,7 +823,7 @@ echo "</div>";
 
 
 
-<?php include '../php/mapping.php'  ?>
+ <?php include '../php/mapping.php'  ?> 
 
 
 </body>
