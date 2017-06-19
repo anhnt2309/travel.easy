@@ -70,7 +70,7 @@
     float: left;
     height: 117px;
     left: 0px;
-    position: relative;
+    position: absolute;
     right: 0px;
     text-align: left;
     text-decoration: none solid rgb(82, 76, 97);
@@ -1089,7 +1089,7 @@ ul li#LI_18:after{
     box-sizing: border-box;
     color: rgb(82, 76, 97);
     cursor: pointer;
-    height: 144px;
+    height: 210px;
     left: 470.75px;
     position: absolute;
     right: 0px;
@@ -1242,6 +1242,7 @@ bottom: 0px;
 }/*#SPAN_33*/
 
 #DIV_34 {
+        padding-top: 5%;
     box-sizing: border-box;
     color: rgb(82, 76, 97);
     cursor: pointer;
@@ -1420,7 +1421,7 @@ bottom: 0px;
     padding: 0;
     margin: .375rem 0;
     color: #b2aebd;
-    font-size: .75rem;
+    /*font-size: .75rem;*/
     line-height: .75rem;
     text-align: left;
     margin-bottom: 0;
@@ -1476,4 +1477,22 @@ bottom: 0px;
     cursor: default;
     pointer-events: none;
      color: gainsboro !important;
+}
+
+p{
+    font-size: 12px !important;
+}
+
+section{
+    padding: 0px 0 !important;
+}
+
+.modal-dialog{
+    padding-top: 5% !important;
+}
+
+
+.cta-small-text{
+      position: relative !important;
+      top: 7px !important;
 }

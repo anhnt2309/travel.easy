@@ -100,6 +100,7 @@ html, body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 24px;
+      background-color: #f3f2f5 !important;
 }
 
 .pagination-custom{
@@ -133,6 +134,29 @@ html, body {
 .pagination-item.first-number {
   border-left: 1px solid #d7dadb;
 }
+
+.pagination-item-filter{
+  list-style-type: none;
+  display: inline-block;
+  border-right: 1px solid #d7dadb;
+  transform: scale(1) rotate(19deg) translateX(0px) translateY(0px) skewX(-10deg) skewY(-20deg);
+}
+
+.pagination-item-filter:hover,
+.pagination-item-filter.is-active {
+  background-color: #fed136;
+  border-right: 1px solid #fff;
+}
+.pagination-item-filter:hover .pagination-link,
+.pagination-item-filter.is-active .pagination-link {
+  color: #fff;
+}
+
+.pagination-item-filter.first-number {
+  border-left: 1px solid #d7dadb;
+}
+
+
 
 .pagination-link {
   padding: 1.1em 1.6em;
@@ -213,3 +237,12 @@ html, body {
     /* align-itßems: center; */
     left: 10%;
 }
+
+/*.mainNav{
+  @import url("agency.min.css");
+   @import url("css.css");
+    @import url("css1.css");
+     @import url("css2.css");
+
+      @import url("css3.css");
+}*/

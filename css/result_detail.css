@@ -9029,6 +9029,7 @@
 }/*#result_detail_id_SPAN_27*/
 
 #result_detail_id_DIV_28 {
+     line-height: 110% !important;
     animation-delay: 0s;
     animation-direction: normal;
     animation-duration: 0s;
@@ -12131,6 +12132,7 @@
 }/*#result_detail_id_DIV_37*/
 
 #result_detail_id_DIV_38 {
+        line-height: 110% !important;
     animation-delay: 0s;
     animation-direction: normal;
     animation-duration: 0s;
@@ -13679,6 +13681,8 @@
 }/*#result_detail_id_DIV_41*/
 
 #result_detail_id_DIV_42 {
+     line-height: 110% !important;
+        width: 50% !important;
     animation-delay: 0s;
     animation-direction: normal;
     animation-duration: 0s;
