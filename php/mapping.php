@@ -13,27 +13,7 @@
 	
 
 	<?php
-	class City{
-	/**
-	 * Class Constructor
-	 * @param    $name   
-	 * @param    $country   
-	 * @param    $latitude   
-	 * @param    $longitude   
-	 */
-	public $name;
-	public $country;
-	public $latitude;
-	public $longitude;
-	public function __construct($name, $country, $latitude, $longitude)
-	{
-		$this->name = $name;
-		$this->country = $country;
-		$this->latitude = $latitude;
-		$this->longitude = $longitude;
-		
-	}
-}
+	include_once 'findCity.php';
 
 class CityPOI{
 	public $main_image;
@@ -70,58 +50,11 @@ class CityPOI{
 	}
 }
 
-function findCityName($to_airport){
-$curl = curl_init();
 
-curl_setopt_array($curl, array(
-	CURLOPT_URL => "https://api.sandbox.amadeus.com/v1.2/location/".$to_airport."?apikey=6NwaGnAUxDUPV2MEFhAW0cR9uhGAQ4ol",
-	CURLOPT_RETURNTRANSFER => true,
-	CURLOPT_ENCODING => "",
-	CURLOPT_MAXREDIRS => 10,
-	CURLOPT_TIMEOUT => 30,
-	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	CURLOPT_CUSTOMREQUEST => "GET",
-	CURLOPT_HTTPHEADER => array(
-		"cache-control: no-cache",
-		"postman-token: 09bc22fd-f5ab-b57b-dcf0-cb2f7a538b3a"
-		),
-	));
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-	echo "cURL Error #:" . $err;
-} else {
-	// echo "<pre>";
- //  print_r( $response);
-
- //  echo "<pre>";
-
-	$response_array = json_decode($response);
-	$response_count = json_decode($response,true);
-	$numOfresult = count($response_count);
-	if($numOfresult == 1){
-		foreach ($response_array->airports as $key => $value) {
-			if($key == 0){
-				$toCity = new City($value->name,$value->country,$value->location->latitude,$value->location->longitude);
-			}
-		}
-		
-	}
-	else{
-		$toCity = new City($response_array->city->name,$response_array->city->country,$response_array->city->location->latitude,$response_array->city->location->longitude);
-	}
-  // echo $toCity->name;
-  // echo $toCity->latitude;
-  // echo $toCity->longitude;
-}
-return $toCity;
-}
 
 $toCity = findCityName($to_airport);
+
+
 
 $curl2 = curl_init();
 curl_setopt_array($curl2, array(
@@ -198,11 +131,11 @@ if ($err) {
     var infoWindowContent = [	
     <?php 
     foreach ($list_Of_POI as $key1 => $POI1) { 
-
+    	$clean_description = str_replace('"','',$POI1->short_description);
     	echo "['<div class=\"info_content\" style=\"width: 650px; \">' +
     	'<img src = \"$POI1->main_image\" style=\"float: left;padding-right: 10px; width: 220px; height: 220px;\">'+
     	\"<h3 >$POI1->title</h3>\" +
-    	\"<p style='padding-left: 224px; font-size: large;''> $POI1->short_description </p>\"+ 
+    	\"<p style='padding-left: 224px; font-size: large;''> $clean_description </p>\"+ 
     	\"<a href='$POI1->wiki_page_link' style='padding-right: 25px;color: green;    font-size: 15px;font-weight: normal;' target='_blank'>Wikipedia pages</a>\"+'<a href=\"$POI1->google_maps_link\" style=\"color: red;    font-size: 15px;font-weight: normal;\"> View on Google Maps </a>'+       '</div>'],";
     }
 
