@@ -169,6 +169,31 @@ session_start();
 
         <script >
           $(document).ready(function(){
+            $("#log-out").click(function(){
+               $("#login").attr("href","#");
+                    $("#login").attr("data-toggle","dropdown");
+                    $("#login-text").text("Login");
+                    <?php
+                    // Unset all of the session variables.
+                    $_SESSION = array();
+
+                    // // If it's desired to kill the session, also delete the session cookie.
+                    // // Note: This will destroy the session, and not just the session data!
+                    // if (ini_get("session.use_cookies")) {
+                    //     $params = session_get_cookie_params();
+                    //     setcookie(session_name(), '', time() - 42000,
+                    //         $params["path"], $params["domain"],
+                    //         $params["secure"], $params["httponly"]
+                    //     );
+                    // }
+
+                    // Finally, destroy the session.
+                    session_destroy();
+                    ?>
+                    $(".close-modal").click();
+            });
+
+
             $("#bkk").click(function(){
 
               $("#to-input").val($(this).attr("value"));
@@ -1621,11 +1646,11 @@ session_start();
                     <div class="container">
                         <h1 class="well" id="welcome">WELCOME</h1>
                         <div class="col-lg-12 well">
-                           <!--  <div class="row">
+                            <div class="row">
                                 <form >
                                     <div class="col-sm-12">
                                         <div class="row">
-                                            <div class="col-sm-6 form-group">
+                                          <!--   <div class="col-sm-6 form-group">
                                                 <label>First Name</label>
                                                 <input type="text" id="res-first-name" placeholder="Enter First Name Here.." class="form-control" required>
                                             </div>
@@ -1674,13 +1699,13 @@ session_start();
                                           <label>Password</label>
                                             <input type="password" id="res-pass" placeholder="Enter Password Here.." class="form-control" required>
                                         </div> 
-                                        <div id="res-result">
+                                        <div id="res-result"> -->
                                                      
-                                        </div>
-                                        <button type="button" class="register" class="btn btn-lg btn-info">Submit</button>
+                                        <!-- </div> -->
+                                        <button id="log-out" type="button" class="register" class="btn btn-lg btn-info">Log out</button>
                                     </div>
                                 </form> 
-                            </div> -->
+                            </div>
                         </div>
 
                     </div>
