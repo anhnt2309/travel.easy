@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +15,7 @@
     <meta name="author" content="">
 
     <title>Travel.Easy</title>
-    <link rel="shortcut icon" href="image/favicon.png">
+
     <!--momentjs-->
     <script src="js/moment.js" ></script>
 
@@ -164,6 +169,123 @@
 
         <script >
           $(document).ready(function(){
+            $("#bkk").click(function(){
+
+              $("#to-input").val($(this).attr("value"));
+            });
+
+            $("#facebook").click(function(){
+              $str ="<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>  <strong>Error!!! This function is still in developing</strong> </div>";
+              $("#notAvailable").html($str);
+            })
+
+            $("#twitter").click(function(){
+              $str ="<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>  <strong>Error!!! This function is still in developing</strong> </div>";
+              $("#notAvailable").html($str);
+            })
+
+            $("#log-in").click(function(){
+              
+              if($("#log-email").val()!="" && $("#log-pass").val() != ""){
+                var email = $("#log-email").val();
+                var pass =$("#log-pass").val();
+
+                $.post("php/login.php",
+                {
+                        email:email,
+                        pass:pass 
+                },
+                function(data,status){
+                  if(status=="success"){
+                    // alert(data);
+                    if(data.substring(0,1)>0){
+                      $logsuccesshtml = "  <div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>  <strong>Log in successfully!!!</strong> </div>  "
+                      $("#log-result").html($logsuccesshtml);
+                      setTimeout( myFunction, 1000);
+                     function myFunction() {
+                       $("#login").click(); 
+                       $("#login").attr("href","#dangnhap");
+                    $("#login").attr("data-toggle","modal");
+                    $("#welcome").text("WELCOME" +data.substring(1,data.length));
+                    }
+                    $("#login-text").text(data.substring(1,data.length));
+
+
+                     //pass email to session
+                      // $("#login-dp").delay( 500 ).fadeOut(400);
+                    }
+                    else{
+                      $logerrorhtml = " <div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>  <strong>Email or Password is incorrect</strong> </div> "
+                      $("#log-result").html($logerrorhtml);
+                    }
+                    
+                   
+                  }
+                });
+              }else{
+
+                $logerrorhtml = " <div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>  <strong>Error!!! Please fill out Email and Password to continue</strong> </div> "
+                      $("#log-result").html($logerrorhtml);
+              }
+            });
+
+            $(".register").click(function() {
+              
+              if($("#res-email").val()!="" && $("#res-first-name").val() != "" && $("#res-last-name").val() != "" && $("#res-pass").val() !=""){
+                var lastName = $("#res-last-name").val();
+                var firstName = $("#res-first-name").val();
+                var address =$("#res-address").val();
+                var city = $("#res-City").val();
+                var state = $("#res-state").val();
+                var zip = $("#res-zip").val();
+                var title = $("#res-title").val();
+                var company = $("#res-company").val();
+                var phoneNumber= $("#res-phone-number").val();
+                var email = $("#res-email").val();
+                var pass=$("#res-pass").val();
+
+                $.post("php/register.php",
+                {
+                  lastname:lastName,
+                        firstname:firstName,
+                        address:address,
+                        city:city,
+                        state:state,
+                        zip:zip,
+                        title:title,
+                        company:company,
+                        phone:phoneNumber,
+                        email:email,
+                        pass:pass 
+                        
+                },
+                function(data,status){
+                  if(status=="success"){
+                  // alert(data);
+                    if(data>0){
+                      $successhtml = "  <div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>  <strong>Hoorayy!!!! Congratulation, your registation is successfully completed. Please sign in to continue</strong> </div>  "
+                      $("#res-result").html($successhtml);
+                       setTimeout( myFunction, 1000);
+                     function myFunction() {
+                        $(".close-modal").click();
+                         $("#login").click();
+                    }
+                     
+                    }
+                    else{
+                      $errorhtml = " <div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>  <strong>Oops!!! Something had gone wrong.Please try again later</strong> </div> "
+                      $("#res-result").html($errorhtml);
+                    }
+                    
+                   
+                  }
+                });
+              }else{
+               $errorhtml = " <div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>  <strong>Error!!! Please fill out First Name, Last Name, Email and Password to continue</strong> </div> "
+                      $("#res-result").html($errorhtml);
+              }
+            });
+
 
             $("#one-way").click(function(){
                  $("#end_date").val("");
@@ -400,44 +522,50 @@
                         <a class="page-scroll" href="#services">Services</a>
                     </li>-->
                     <li>
-                        <a class="page-scroll" href="#portfolio">International</a>
+                        <a class="page-scroll" href="#International">International</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#Domestic">Domestic</a>
                     </li>
-                    <li>
+                   <!--  <li>
                         <a class="page-scroll" href="#Top">Top </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                     <li>
                         <li class="dropdown" style="margin-left: 400px;">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="login" style="border-radius: 3px;">
-                                <span class="glyphicon glyphicon-user"></span>  Login<span class="caret"></span></a>
+                                <span class="glyphicon glyphicon-user"></span><span id="login-text">  Login </span><span class="caret"></span></a>
                                 <ul id="login-dp" class="dropdown-menu">
                                     <li>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 Login with
                                                 <div class="social-buttons">
-                                                    <a href="#" class="btn btn-fb"> Facebook</a>
-                                                    <a href="#" class="btn btn-tw">Twitter</a>
+                                                    <a href="#" id="facebook" class="btn btn-fb"> Facebook</a>
+                                                    <a href="#" id="twitter" class="btn btn-tw">Twitter</a>
+                                                    <div id="notAvailable">
+                                                      
+                                                    </div>
                                                 </div>
                                                 or
-                                                <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                                <form class="form" role="form" accept-charset="UTF-8" id="login-nav">
                                                     <div class="form-group">
                                                         <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                                                        <input type="email" id="log-email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                                                        <input type="password" id="log-pass" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
                                                         <div class="help-block text-right"><a href="" style="
                                                             color: #428bca;">Forget the password ?</a></div>
                                                         </div>
+                                                         <div id="log-result">
+                                                    
+                                                        </div>
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                                            <button type="button" id="log-in" class="btn btn-primary btn-block">Sign in</button>
                                                         </div>
                                                         <div class="checkbox">
                                                             <label>
@@ -759,6 +887,102 @@
             </div>
         </div>
     </section>-->
+    <section id="International" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Start your travel planning here</h2>
+                    <h3 class="section-subheading text-muted">Discover our top destinations in International</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#Top" id="bkk" class="portfolio-link" value="Bangkok(BKK)">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+
+                            </div>
+                        </div>
+                        <img src="image/bangkok.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Bangkok</h4>
+                        <p class="text-muted">ThaiLand</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+
+                            </div>
+                        </div>
+                        <img src="image/London.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>London</h4>
+                        <p class="text-muted">England</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+
+                            </div>
+                        </div>
+                        <img src="image/newyork.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Newyork</h4>
+                        <p class="text-muted">The USA</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+
+                            </div>
+                        </div>
+                        <img src="image/PARIS.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Paris</h4>
+                        <p class="text-muted">France</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+
+                            </div>
+                        </div>
+                        <img src="image/singapo.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Singapo</h4>
+                        <p class="text-muted">Singapo</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+
+                            </div>
+                        </div>
+                        <img src="image/Tokyo.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4>Tokyo</h4>
+                        <p class="text-muted">Japan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
 
     
@@ -1318,59 +1542,62 @@
                         <h1 class="well">Registration Form</h1>
                         <div class="col-lg-12 well">
                             <div class="row">
-                                <form>
+                                <form >
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-sm-6 form-group">
                                                 <label>First Name</label>
-                                                <input type="text" placeholder="Enter First Name Here.." class="form-control">
+                                                <input type="text" id="res-first-name" placeholder="Enter First Name Here.." class="form-control" required>
                                             </div>
                                             <div class="col-sm-6 form-group">
                                                 <label>Last Name</label>
-                                                <input type="text" placeholder="Enter Last Name Here.." class="form-control">
+                                                <input type="text" id="res-last-name"  placeholder="Enter Last Name Here.." class="form-control" required>
                                             </div>
                                         </div>                  
                                         <div class="form-group">
                                             <label>Address</label>
-                                            <textarea placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+                                            <textarea placeholder="Enter Address Here.." id="res-address" rows="3" class="form-control"></textarea>
                                         </div>  
                                         <div class="row">
                                             <div class="col-sm-4 form-group">
                                                 <label>City</label>
-                                                <input type="text" placeholder="Enter City Name Here.." class="form-control">
+                                                <input type="text" id="res-City" placeholder="Enter City Name Here.." class="form-control">
                                             </div>  
                                             <div class="col-sm-4 form-group">
                                                 <label>State</label>
-                                                <input type="text" placeholder="Enter State Name Here.." class="form-control">
+                                                <input type="text" id="res-state" placeholder="Enter State Name Here.." class="form-control">
                                             </div>  
                                             <div class="col-sm-4 form-group">
                                                 <label>Zip</label>
-                                                <input type="text" placeholder="Enter Zip Code Here.." class="form-control">
+                                                <input type="text" id="res-zip" placeholder="Enter Zip Code Here.." class="form-control">
                                             </div>      
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-6 form-group">
                                                 <label>Title</label>
-                                                <input type="text" placeholder="Enter Designation Here.." class="form-control">
+                                                <input type="text" id="res-title" placeholder="Enter Designation Here.." class="form-control">
                                             </div>      
                                             <div class="col-sm-6 form-group">
                                                 <label>Company</label>
-                                                <input type="text" placeholder="Enter Company Name Here.." class="form-control">
+                                                <input type="text" id="res-company" placeholder="Enter Company Name Here.." class="form-control">
                                             </div>  
                                         </div>                      
                                         <div class="form-group">
                                             <label>Phone Number</label>
-                                            <input type="text" placeholder="Enter Phone Number Here.." class="form-control">
+                                            <input type="number" id="res-phone-number" placeholder="Enter Phone Number Here.." class="form-control">
                                         </div>      
                                         <div class="form-group">
                                             <label>Email Address</label>
-                                            <input type="text" placeholder="Enter Email Address Here.." class="form-control">
-                                        </div>  
-                                        <div class="form-group">
-                                            <label>Website</label>
-                                            <input type="text" placeholder="Enter Website Name Here.." class="form-control">
+                                            <input type="email" id="res-email" placeholder="Enter Email Address Here.." class="form-control" required>
+                                        </div> 
+                                          <div class="form-group">
+                                          <label>Password</label>
+                                            <input type="password" id="res-pass" placeholder="Enter Password Here.." class="form-control" required>
+                                        </div> 
+                                        <div id="res-result">
+                                                     
                                         </div>
-                                        <button type="button" class="btn btn-lg btn-info">Submit</button>                   
+                                        <button type="button" class="register" class="btn btn-lg btn-info">Submit</button>
                                     </div>
                                 </form> 
                             </div>
@@ -1381,7 +1608,85 @@
             </div>
         </div>
 
+<!---------------->
+        <div class="portfolio-modal modal fade" id="dangnhap" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-dismiss="modal">
+                        <div class="lr">
+                            <div class="rl">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <h1 class="well" id="welcome">WELCOME</h1>
+                        <div class="col-lg-12 well">
+                           <!--  <div class="row">
+                                <form >
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-6 form-group">
+                                                <label>First Name</label>
+                                                <input type="text" id="res-first-name" placeholder="Enter First Name Here.." class="form-control" required>
+                                            </div>
+                                            <div class="col-sm-6 form-group">
+                                                <label>Last Name</label>
+                                                <input type="text" id="res-last-name"  placeholder="Enter Last Name Here.." class="form-control" required>
+                                            </div>
+                                        </div>                  
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <textarea placeholder="Enter Address Here.." id="res-address" rows="3" class="form-control"></textarea>
+                                        </div>  
+                                        <div class="row">
+                                            <div class="col-sm-4 form-group">
+                                                <label>City</label>
+                                                <input type="text" id="res-City" placeholder="Enter City Name Here.." class="form-control">
+                                            </div>  
+                                            <div class="col-sm-4 form-group">
+                                                <label>State</label>
+                                                <input type="text" id="res-state" placeholder="Enter State Name Here.." class="form-control">
+                                            </div>  
+                                            <div class="col-sm-4 form-group">
+                                                <label>Zip</label>
+                                                <input type="text" id="res-zip" placeholder="Enter Zip Code Here.." class="form-control">
+                                            </div>      
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 form-group">
+                                                <label>Title</label>
+                                                <input type="text" id="res-title" placeholder="Enter Designation Here.." class="form-control">
+                                            </div>      
+                                            <div class="col-sm-6 form-group">
+                                                <label>Company</label>
+                                                <input type="text" id="res-company" placeholder="Enter Company Name Here.." class="form-control">
+                                            </div>  
+                                        </div>                      
+                                        <div class="form-group">
+                                            <label>Phone Number</label>
+                                            <input type="number" id="res-phone-number" placeholder="Enter Phone Number Here.." class="form-control">
+                                        </div>      
+                                        <div class="form-group">
+                                            <label>Email Address</label>
+                                            <input type="email" id="res-email" placeholder="Enter Email Address Here.." class="form-control" required>
+                                        </div> 
+                                          <div class="form-group">
+                                          <label>Password</label>
+                                            <input type="password" id="res-pass" placeholder="Enter Password Here.." class="form-control" required>
+                                        </div> 
+                                        <div id="res-result">
+                                                     
+                                        </div>
+                                        <button type="button" class="register" class="btn btn-lg btn-info">Submit</button>
+                                    </div>
+                                </form> 
+                            </div> -->
+                        </div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- jQuery -->
         <!-- <script src="js/jquery-3.2.1.js"></script> -->
