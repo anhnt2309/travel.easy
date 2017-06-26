@@ -23,9 +23,9 @@ $("input").on("keyup", function(){
      searchTerm = "dli";
    
   }
-  var url_str = 'https://api.sandbox.amadeus.com/v1.2/airports/autocomplete?apikey=6NwaGnAUxDUPV2MEFhAW0cR9uhGAQ4ol&term=' + searchTerm;
+  var url_str = 'https://api.sandbox.amadeus.com/v1.2/airports/autocomplete?apikey=B9YiDA5BMa8PnEOgWglAwAuRhAzF9A6q&term=' + searchTerm;
   if(domesticFrom == true ||  domesticTo == true){
-      url_str= 'https://api.sandbox.amadeus.com/v1.2/airports/autocomplete?apikey=6NwaGnAUxDUPV2MEFhAW0cR9uhGAQ4ol&term=' + searchTerm + '&country=VN';
+      url_str= 'https://api.sandbox.amadeus.com/v1.2/airports/autocomplete?apikey=6B9YiDA5BMa8PnEOgWglAwAuRhAzF9A6q&term=' + searchTerm + '&country=VN';
   }
   
   $.ajax({

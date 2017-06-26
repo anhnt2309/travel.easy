@@ -490,7 +490,7 @@ session_start();
  }
 
  $.ajax({
-    url: 'https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=6NwaGnAUxDUPV2MEFhAW0cR9uhGAQ4ol&latitude=' + latitude +'&longitude=' + longitude,
+    url: 'https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=B9YiDA5BMa8PnEOgWglAwAuRhAzF9A6q&latitude=' + latitude +'&longitude=' + longitude,
     type: 'GET',
     dataType: 'json'
 })

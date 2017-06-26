@@ -58,7 +58,7 @@ $toCity = findCityName($to_airport);
 
 $curl2 = curl_init();
 curl_setopt_array($curl2, array(
-	CURLOPT_URL => "https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-circle?apikey=6NwaGnAUxDUPV2MEFhAW0cR9uhGAQ4ol&latitude=".$toCity->latitude."&longitude=".$toCity->longitude."&radius=42",
+	CURLOPT_URL => "https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-circle?apikey=B9YiDA5BMa8PnEOgWglAwAuRhAzF9A6q&latitude=".$toCity->latitude."&longitude=".$toCity->longitude."&radius=42",
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_ENCODING => "",
 	CURLOPT_MAXREDIRS => 10,

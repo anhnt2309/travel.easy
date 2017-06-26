@@ -1093,292 +1093,292 @@ echo '<h4 class="modal-title">Flight Details</h4>';
 echo '</div>';
 echo '<div class="modal-body">';
 
-// if(strcasecmp(get_class($allFlights->departFlight),"HasStopFlight") != 0)     {
-//      //depart non stop
-//     //get hour
-//     $arrive_date = strtok($allFlights->departFlight->departs_at, "T");
-//     $departs_date = strtok($allFlights->departFlight->arrives_at, "T");
+if(strcasecmp(get_class($allFlights->departFlight),"HasStopFlight") != 0)     {
+     //depart non stop
+    //get hour
+    $arrive_date = strtok($allFlights->departFlight->departs_at, "T");
+    $departs_date = strtok($allFlights->departFlight->arrives_at, "T");
 
-//     $arrive_time = substr($allFlights->departFlight->departs_at, strpos($allFlights->departFlight->departs_at, 'T') +1);
-//     $departs_time = substr($allFlights->departFlight->arrives_at, strpos($allFlights->departFlight->arrives_at, 'T') +1);
-//                     // $departs_time = date('h:i A', strtotime($departs_time));
+    $arrive_time = substr($allFlights->departFlight->departs_at, strpos($allFlights->departFlight->departs_at, 'T') +1);
+    $departs_time = substr($allFlights->departFlight->arrives_at, strpos($allFlights->departFlight->arrives_at, 'T') +1);
+                    // $departs_time = date('h:i A', strtotime($departs_time));
 
-//                     //get flight duration
-//     $departs_datetime = new DateTime($departs_date." ".$departs_time);
-//     $flight_duration_object = $departs_datetime->diff(new DateTime($arrive_date." ".$arrive_time));
+                    //get flight duration
+    $departs_datetime = new DateTime($departs_date." ".$departs_time);
+    $flight_duration_object = $departs_datetime->diff(new DateTime($arrive_date." ".$arrive_time));
 
-//     $flight_duration = $flight_duration_object->h ."h ".$flight_duration_object->i."m";
+    $flight_duration = $flight_duration_object->h ."h ".$flight_duration_object->i."m";
 
-//                     //get airline information
-//     if($index==0){
-//      $airline = getAirlines($allFlights->departFlight->operating_airline);
-// }
+                    //get airline information
+    if($index==0){
+     $airline = getAirlines($allFlights->departFlight->operating_airline);
+}
 
-// $aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$allFlights->departFlight->aircraft);
+$aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$allFlights->departFlight->aircraft);
 
-// $date = new DateTime($start_date);
-// $formatedDate = date_format($date,'d-m-Y');
+$date = new DateTime($start_date);
+$formatedDate = date_format($date,'d-m-Y');
 
-// $total_money_on_return = number_format($allFlights->departFlight->total_price).$currency;
+$total_money_on_return = number_format($allFlights->departFlight->total_price).$currency;
 
-// if(strcasecmp($allFlights->departFlight->operating_airline,"BL") == 0){
-//      $airline->website= $airline->website."//vn/vi/home?origin=".$from_airport."&destination=".$to_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
-// }
-// if(strcasecmp($allFlights->departFlight->operating_airline,"VN") == 0){
-//      $airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$from_airport."&destination=".$to_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
-// }
+if(strcasecmp($allFlights->departFlight->operating_airline,"BL") == 0){
+     $airline->website= $airline->website."//vn/vi/home?origin=".$from_airport."&destination=".$to_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
+}
+if(strcasecmp($allFlights->departFlight->operating_airline,"VN") == 0){
+     $airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$from_airport."&destination=".$to_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
+}
 
 
 
-// // echo "<div style=\"padding-top:100px !important\"></div>";
-// noStopFlightDetail("Depart",$departs_date,$departs_time,$arrive_date,$arrive_time,$from_airport,$to_airport,$airline,$allFlights->departFlight,$flight_duration,$aircraft,$total_money_on_return,$from_airport_name,$to_airport_name);
-// }
-// else{
-// // depart has stop 
-//      $first_arrive_date = strtok($allFlights->departFlight->firstHalfFlight->arrives_at, "T");
-//      $first_departs_date = strtok($allFlights->departFlight->firstHalfFlight->departs_at, "T");
+// echo "<div style=\"padding-top:100px !important\"></div>";
+noStopFlightDetail("Depart",$departs_date,$departs_time,$arrive_date,$arrive_time,$from_airport,$to_airport,$airline,$allFlights->departFlight,$flight_duration,$aircraft,$total_money_on_return,$from_airport_name,$to_airport_name);
+}
+else{
+// depart has stop 
+     $first_arrive_date = strtok($allFlights->departFlight->firstHalfFlight->arrives_at, "T");
+     $first_departs_date = strtok($allFlights->departFlight->firstHalfFlight->departs_at, "T");
 
-//      $second_departs_date = strtok($allFlights->departFlight->secondHalfFlight->departs_at, "T");
-//      $second_arrive_date = strtok($allFlights->departFlight->secondHalfFlight->arrives_at, "T");
+     $second_departs_date = strtok($allFlights->departFlight->secondHalfFlight->departs_at, "T");
+     $second_arrive_date = strtok($allFlights->departFlight->secondHalfFlight->arrives_at, "T");
 
 
-//      $stop_airport = findCityName($allFlights->departFlight->firstHalfFlight->destination_airport);
+     $stop_airport = findCityName($allFlights->departFlight->firstHalfFlight->destination_airport);
 
-//      $first_arrive_time = substr($allFlights->departFlight->firstHalfFlight->arrives_at, strpos($allFlights->departFlight->firstHalfFlight->departs_at, 'T') +1);
+     $first_arrive_time = substr($allFlights->departFlight->firstHalfFlight->arrives_at, strpos($allFlights->departFlight->firstHalfFlight->departs_at, 'T') +1);
 
-//      $first_departs_time = substr($allFlights->departFlight->firstHalfFlight->departs_at, strpos($allFlights->departFlight->firstHalfFlight->arrives_at, 'T') +1);
+     $first_departs_time = substr($allFlights->departFlight->firstHalfFlight->departs_at, strpos($allFlights->departFlight->firstHalfFlight->arrives_at, 'T') +1);
 
-//      $second_arrive_time = substr($allFlights->departFlight->secondHalfFlight->arrives_at, strpos($allFlights->departFlight->secondHalfFlight->departs_at, 'T') +1);
+     $second_arrive_time = substr($allFlights->departFlight->secondHalfFlight->arrives_at, strpos($allFlights->departFlight->secondHalfFlight->departs_at, 'T') +1);
 
 
-//      $second_departs_time = substr($allFlights->departFlight->secondHalfFlight->departs_at, strpos($allFlights->departFlight->secondHalfFlight->arrives_at, 'T') +1);
-//                     // $departs_time = date('h:i A', strtotime($departs_time));
-//      $date = new DateTime($start_date);
-//      $formatedDate = date_format($date,'d-m-Y');
+     $second_departs_time = substr($allFlights->departFlight->secondHalfFlight->departs_at, strpos($allFlights->departFlight->secondHalfFlight->arrives_at, 'T') +1);
+                    // $departs_time = date('h:i A', strtotime($departs_time));
+     $date = new DateTime($start_date);
+     $formatedDate = date_format($date,'d-m-Y');
 
-//                     //get airline information
-//      // if($index==0){
-//           $airline = getAirlines($allFlights->departFlight->firstHalfFlight->operating_airline);
-//           $second_airline= getAirlines($allFlights->departFlight->secondHalfFlight->operating_airline);
-//      // }
+                    //get airline information
+     // if($index==0){
+          $airline = getAirlines($allFlights->departFlight->firstHalfFlight->operating_airline);
+          $second_airline= getAirlines($allFlights->departFlight->secondHalfFlight->operating_airline);
+     // }
 
-//      if(strcasecmp($allFlights->departFlight->firstHalfFlight->operating_airline,"BL") == 0){
-//           $airline->website= $airline->website."//vn/vi/home?origin=".$allFlights->departFlight->firstHalfFlight->origin_airport."&destination=".$allFlights->departFlight->firstHalfFlight->destination_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
-//      }
+     if(strcasecmp($allFlights->departFlight->firstHalfFlight->operating_airline,"BL") == 0){
+          $airline->website= $airline->website."//vn/vi/home?origin=".$allFlights->departFlight->firstHalfFlight->origin_airport."&destination=".$allFlights->departFlight->firstHalfFlight->destination_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
+     }
 
-//      if(strcasecmp($allFlights->departFlight->secondHalfFlight->operating_airline,"BL") == 0){
-//           $second_airline->website= $second_airline->website."//vn/vi/home?origin=".$allFlights->departFlight->secondHalfFlight->origin_airport."&destination=".$allFlights->departFlight->secondHalfFlight->destination_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
-//      }
+     if(strcasecmp($allFlights->departFlight->secondHalfFlight->operating_airline,"BL") == 0){
+          $second_airline->website= $second_airline->website."//vn/vi/home?origin=".$allFlights->departFlight->secondHalfFlight->origin_airport."&destination=".$allFlights->departFlight->secondHalfFlight->destination_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
+     }
 
 
-//      if(strcasecmp($allFlights->departFlight->firstHalfFlight->operating_airline,"VN") == 0){
-//           $airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$allFlights->departFlight->firstHalfFlight->origin_airport."&destination=".$allFlights->departFlight->firstHalfFlight->destination_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
-//      }
+     if(strcasecmp($allFlights->departFlight->firstHalfFlight->operating_airline,"VN") == 0){
+          $airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$allFlights->departFlight->firstHalfFlight->origin_airport."&destination=".$allFlights->departFlight->firstHalfFlight->destination_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
+     }
 
-//      if(strcasecmp($allFlights->departFlight->secondHalfFlight->operating_airline,"VN") == 0){
-//           $second_airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$allFlights->departFlight->secondHalfFlight->origin_airport."&destination=".$allFlights->departFlight->secondHalfFlight->destination_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
-//      }    
-//      $first_aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$allFlights->departFlight->firstHalfFlight->aircraft);
+     if(strcasecmp($allFlights->departFlight->secondHalfFlight->operating_airline,"VN") == 0){
+          $second_airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$allFlights->departFlight->secondHalfFlight->origin_airport."&destination=".$allFlights->departFlight->secondHalfFlight->destination_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
+     }    
+     $first_aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$allFlights->departFlight->firstHalfFlight->aircraft);
 
-//      $second_aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$allFlights->departFlight->secondHalfFlight->aircraft);
+     $second_aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$allFlights->departFlight->secondHalfFlight->aircraft);
 
-//                     //get flight duration
-//      $first_departs_datetime = new DateTime($first_departs_date."".$first_departs_time);
-//      $first_flight_duration_object = $first_departs_datetime->diff(new DateTime($first_arrive_date."".$first_arrive_time));
+                    //get flight duration
+     $first_departs_datetime = new DateTime($first_departs_date."".$first_departs_time);
+     $first_flight_duration_object = $first_departs_datetime->diff(new DateTime($first_arrive_date."".$first_arrive_time));
 
-//      $second_departs_datetime = new DateTime($second_departs_date."".$second_departs_time);
-//      $second_flight_duration_object = $second_departs_datetime->diff(new DateTime($second_arrive_date."".$second_arrive_time));
+     $second_departs_datetime = new DateTime($second_departs_date."".$second_departs_time);
+     $second_flight_duration_object = $second_departs_datetime->diff(new DateTime($second_arrive_date."".$second_arrive_time));
 
-//      $stop_duration_datetime = new DateTime($first_arrive_date."".$first_arrive_time);
-//      $stop_duration_object = $stop_duration_datetime->diff(new DateTime($second_departs_date."".$second_departs_time));
+     $stop_duration_datetime = new DateTime($first_arrive_date."".$first_arrive_time);
+     $stop_duration_object = $stop_duration_datetime->diff(new DateTime($second_departs_date."".$second_departs_time));
 
-//      $first_flight_duration = $first_flight_duration_object->h ."h ".$first_flight_duration_object->i."m";
+     $first_flight_duration = $first_flight_duration_object->h ."h ".$first_flight_duration_object->i."m";
 
-//      $second_flight_duration = $second_flight_duration_object->h ."h ".$second_flight_duration_object->i."m";
+     $second_flight_duration = $second_flight_duration_object->h ."h ".$second_flight_duration_object->i."m";
 
-//      $total_duration_hour =$first_flight_duration_object->h+$second_flight_duration_object->h ;
-//      $total_duration_minute = $first_flight_duration_object->i +$second_flight_duration_object->i;
-//      if($total_duration_minute ==60){
-//           $total_duration_hour = $total_duration_hour +1;
-//           $total_duration_minute =00;
-//      }
-//      if($total_duration_minute >60){
-//           $total_duration_hour = $total_duration_hour +1;
-//           $total_duration_minute =$total_duration_minute -60;
-//      }
+     $total_duration_hour =$first_flight_duration_object->h+$second_flight_duration_object->h ;
+     $total_duration_minute = $first_flight_duration_object->i +$second_flight_duration_object->i;
+     if($total_duration_minute ==60){
+          $total_duration_hour = $total_duration_hour +1;
+          $total_duration_minute =00;
+     }
+     if($total_duration_minute >60){
+          $total_duration_hour = $total_duration_hour +1;
+          $total_duration_minute =$total_duration_minute -60;
+     }
 
-//      $overall_duration_hour =$total_duration_hour + $stop_duration_object->h;
+     $overall_duration_hour =$total_duration_hour + $stop_duration_object->h;
 
-//      $overall_duration_minute = $total_duration_minute +$stop_duration_object->i;
-// // echo "";
-//      if($overall_duration_minute ==60){
-//           $overall_duration_hour = $overall_duration_hour +1;
-//           $overall_duration_minute =00;
-//      }
-//      if($overall_duration_minute >60){
-//           $overall_duration_hour = $overall_duration_hour +1;
-//           $overall_duration_minute = $overall_duration_minute -60;
-//      }
+     $overall_duration_minute = $total_duration_minute +$stop_duration_object->i;
+// echo "";
+     if($overall_duration_minute ==60){
+          $overall_duration_hour = $overall_duration_hour +1;
+          $overall_duration_minute =00;
+     }
+     if($overall_duration_minute >60){
+          $overall_duration_hour = $overall_duration_hour +1;
+          $overall_duration_minute = $overall_duration_minute -60;
+     }
 
 
-//      $total_flight_duration =$total_duration_hour."h ".$total_duration_minute."m";
-//      $overall_flight_duration = $overall_duration_hour."h ".$overall_duration_minute."m";
-//      $stop_flight_duration = $stop_duration_object->h."h".$stop_duration_object->i."m";
+     $total_flight_duration =$total_duration_hour."h ".$total_duration_minute."m";
+     $overall_flight_duration = $overall_duration_hour."h ".$overall_duration_minute."m";
+     $stop_flight_duration = $stop_duration_object->h."h".$stop_duration_object->i."m";
 
-//      $total_hasstop_flight = $allFlights->departFlight->firstHalfFlight->total_price + $allFlights->departFlight->secondHalfFlight->total_price ;
+     $total_hasstop_flight = $allFlights->departFlight->firstHalfFlight->total_price + $allFlights->departFlight->secondHalfFlight->total_price ;
 
-// // echo "<div style=\"padding-top:100px !important\"></div>";
-// hasStopFlightDetail("Depart",$first_arrive_date,$first_departs_date,$second_departs_date,$second_arrive_date,$first_arrive_time,$first_departs_time,$second_arrive_time,$second_departs_time,$from_airport,$to_airport,$airline,$second_airline,$allFlights->departFlight,$first_flight_duration,$second_flight_duration,$first_aircraft,$second_aircraft,$currency,$stop_flight_duration,$from_airport_name,$to_airport_name,$stop_airport);
+// echo "<div style=\"padding-top:100px !important\"></div>";
+hasStopFlightDetail("Depart",$first_arrive_date,$first_departs_date,$second_departs_date,$second_arrive_date,$first_arrive_time,$first_departs_time,$second_arrive_time,$second_departs_time,$from_airport,$to_airport,$airline,$second_airline,$allFlights->departFlight,$first_flight_duration,$second_flight_duration,$first_aircraft,$second_aircraft,$currency,$stop_flight_duration,$from_airport_name,$to_airport_name,$stop_airport);
 
-// }
+}
 
-// if(strcasecmp(get_class($allFlights->returnFlight),"HasStopFlight") != 0)     {
+if(strcasecmp(get_class($allFlights->returnFlight),"HasStopFlight") != 0)     {
 
-//  //get hour
-//     $arrive_date = strtok($allFlights->returnFlight->departs_at, "T");
-//     $departs_date = strtok($allFlights->returnFlight->arrives_at, "T");
+ //get hour
+    $arrive_date = strtok($allFlights->returnFlight->departs_at, "T");
+    $departs_date = strtok($allFlights->returnFlight->arrives_at, "T");
 
-//     $arrive_time = substr($allFlights->returnFlight->departs_at, strpos($allFlights->returnFlight->departs_at, 'T') +1);
-//     $departs_time = substr($allFlights->returnFlight->arrives_at, strpos($allFlights->returnFlight->arrives_at, 'T') +1);
-//                     // $departs_time = date('h:i A', strtotime($departs_time));
+    $arrive_time = substr($allFlights->returnFlight->departs_at, strpos($allFlights->returnFlight->departs_at, 'T') +1);
+    $departs_time = substr($allFlights->returnFlight->arrives_at, strpos($allFlights->returnFlight->arrives_at, 'T') +1);
+                    // $departs_time = date('h:i A', strtotime($departs_time));
 
-//                     //get flight duration
-//     $departs_datetime = new DateTime($departs_date." ".$departs_time);
-//     $flight_duration_object = $departs_datetime->diff(new DateTime($arrive_date." ".$arrive_time));
+                    //get flight duration
+    $departs_datetime = new DateTime($departs_date." ".$departs_time);
+    $flight_duration_object = $departs_datetime->diff(new DateTime($arrive_date." ".$arrive_time));
 
-//     $flight_duration = $flight_duration_object->h ."h ".$flight_duration_object->i."m";
+    $flight_duration = $flight_duration_object->h ."h ".$flight_duration_object->i."m";
 
-//                     //get airline information
-//     if($index==0){
-//      $airline = getAirlines($allFlights->returnFlight->operating_airline);
-// }
+                    //get airline information
+    if($index==0){
+     $airline = getAirlines($allFlights->returnFlight->operating_airline);
+}
 
-// $aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$return_info->aircraft);
+$aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$return_info->aircraft);
 
-// $date = new DateTime($start_date);
-// $formatedDate = date_format($date,'d-m-Y');
+$date = new DateTime($start_date);
+$formatedDate = date_format($date,'d-m-Y');
 
-// $total_money_on_return = number_format($allFlights->returnFlight->total_price).$currency;
+$total_money_on_return = number_format($allFlights->returnFlight->total_price).$currency;
 
-// if(strcasecmp($allFlights->returnFlight->operating_airline,"BL") == 0){
-//      $airline->website= $airline->website."//vn/vi/home?origin=".$from_airport."&destination=".$to_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
-// }
+if(strcasecmp($allFlights->returnFlight->operating_airline,"BL") == 0){
+     $airline->website= $airline->website."//vn/vi/home?origin=".$from_airport."&destination=".$to_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
+}
 
-// if(strcasecmp($allFlights->returnFlight->operating_airline,"VN") == 0){
-//      $airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$from_airport."&destination=".$to_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
-// }
-// if(strcasecmp(get_class($allFlights->departFlight),"HasStopFlight") == 0){ 
-// echo "<div style=\"padding-top:170px !important\"></div>";
-// }
-// noStopFlightDetail("Return",$departs_date,$departs_time,$arrive_date,$arrive_time,$allFlights->returnFlight->origin_airport,$allFlights->returnFlight->destination_airport,$airline,$allFlights->returnFlight,$flight_duration,$aircraft,$total_money_on_return,$to_airport_name,$from_airport_name);
-// }
-// else{
-//  $first_arrive_date = strtok($allFlights->returnFlight->firstHalfFlight->arrives_at, "T");
-//      $first_departs_date = strtok($allFlights->returnFlight->firstHalfFlight->departs_at, "T");
+if(strcasecmp($allFlights->returnFlight->operating_airline,"VN") == 0){
+     $airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$from_airport."&destination=".$to_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
+}
+if(strcasecmp(get_class($allFlights->departFlight),"HasStopFlight") == 0){ 
+echo "<div style=\"padding-top:170px !important\"></div>";
+}
+noStopFlightDetail("Return",$departs_date,$departs_time,$arrive_date,$arrive_time,$allFlights->returnFlight->origin_airport,$allFlights->returnFlight->destination_airport,$airline,$allFlights->returnFlight,$flight_duration,$aircraft,$total_money_on_return,$to_airport_name,$from_airport_name);
+}
+else{
+ $first_arrive_date = strtok($allFlights->returnFlight->firstHalfFlight->arrives_at, "T");
+     $first_departs_date = strtok($allFlights->returnFlight->firstHalfFlight->departs_at, "T");
 
-//      $second_departs_date = strtok($allFlights->returnFlight->secondHalfFlight->departs_at, "T");
-//      $second_arrive_date = strtok($allFlights->returnFlight->secondHalfFlight->arrives_at, "T");
+     $second_departs_date = strtok($allFlights->returnFlight->secondHalfFlight->departs_at, "T");
+     $second_arrive_date = strtok($allFlights->returnFlight->secondHalfFlight->arrives_at, "T");
 
 
-//      $stop_airport = findCityName($allFlights->returnFlight->firstHalfFlight->destination_airport);
+     $stop_airport = findCityName($allFlights->returnFlight->firstHalfFlight->destination_airport);
 
-//      $first_arrive_time = substr($allFlights->returnFlight->firstHalfFlight->arrives_at, strpos($allFlights->returnFlight->firstHalfFlight->departs_at, 'T') +1);
+     $first_arrive_time = substr($allFlights->returnFlight->firstHalfFlight->arrives_at, strpos($allFlights->returnFlight->firstHalfFlight->departs_at, 'T') +1);
 
-//      $first_departs_time = substr($allFlights->returnFlight->firstHalfFlight->departs_at, strpos($allFlights->returnFlight->firstHalfFlight->arrives_at, 'T') +1);
+     $first_departs_time = substr($allFlights->returnFlight->firstHalfFlight->departs_at, strpos($allFlights->returnFlight->firstHalfFlight->arrives_at, 'T') +1);
 
-//      $second_arrive_time = substr($allFlights->returnFlight->secondHalfFlight->arrives_at, strpos($allFlights->returnFlight->secondHalfFlight->departs_at, 'T') +1);
+     $second_arrive_time = substr($allFlights->returnFlight->secondHalfFlight->arrives_at, strpos($allFlights->returnFlight->secondHalfFlight->departs_at, 'T') +1);
 
 
-//      $second_departs_time = substr($allFlights->returnFlight->secondHalfFlight->departs_at, strpos($allFlights->returnFlight->secondHalfFlight->arrives_at, 'T') +1);
-//                     // $departs_time = date('h:i A', strtotime($departs_time));
-//      $date = new DateTime($start_date);
-//      $formatedDate = date_format($date,'d-m-Y');
+     $second_departs_time = substr($allFlights->returnFlight->secondHalfFlight->departs_at, strpos($allFlights->returnFlight->secondHalfFlight->arrives_at, 'T') +1);
+                    // $departs_time = date('h:i A', strtotime($departs_time));
+     $date = new DateTime($start_date);
+     $formatedDate = date_format($date,'d-m-Y');
 
-//                     //get airline information
-//      // if($index==0){
-//           $airline = getAirlines($allFlights->returnFlight->firstHalfFlight->operating_airline);
-//           $second_airline= getAirlines($allFlights->returnFlight->secondHalfFlight->operating_airline);
-//      // }
+                    //get airline information
+     // if($index==0){
+          $airline = getAirlines($allFlights->returnFlight->firstHalfFlight->operating_airline);
+          $second_airline= getAirlines($allFlights->returnFlight->secondHalfFlight->operating_airline);
+     // }
 
-//      if(strcasecmp($allFlights->returnFlight->firstHalfFlight->operating_airline,"BL") == 0){
-//           $airline->website= $airline->website."//vn/vi/home?origin=".$allFlights->returnFlight->firstHalfFlight->origin_airport."&destination=".$allFlights->returnFlight->firstHalfFlight->destination_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
-//      }
+     if(strcasecmp($allFlights->returnFlight->firstHalfFlight->operating_airline,"BL") == 0){
+          $airline->website= $airline->website."//vn/vi/home?origin=".$allFlights->returnFlight->firstHalfFlight->origin_airport."&destination=".$allFlights->returnFlight->firstHalfFlight->destination_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
+     }
 
-//      if(strcasecmp($allFlights->returnFlight->secondHalfFlight->operating_airline,"BL") == 0){
-//           $second_airline->website= $second_airline->website."//vn/vi/home?origin=".$allFlights->returnFlight->secondHalfFlight->origin_airport."&destination=".$allFlights->returnFlight->secondHalfFlight->destination_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
-//      }
+     if(strcasecmp($allFlights->returnFlight->secondHalfFlight->operating_airline,"BL") == 0){
+          $second_airline->website= $second_airline->website."//vn/vi/home?origin=".$allFlights->returnFlight->secondHalfFlight->origin_airport."&destination=".$allFlights->returnFlight->secondHalfFlight->destination_airport."&club-jetstar=0&adult=".$adults."&children=".$children."&infants=".$infants."&flexible=1&currency=VND&departure-date=".$formatedDate."";
+     }
 
 
-//      if(strcasecmp($allFlights->returnFlight->firstHalfFlight->operating_airline,"VN") == 0){
-//           $airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$allFlights->returnFlight->firstHalfFlight->origin_airport."&destination=".$allFlights->returnFlight->firstHalfFlight->destination_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
-//      }
+     if(strcasecmp($allFlights->returnFlight->firstHalfFlight->operating_airline,"VN") == 0){
+          $airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$allFlights->returnFlight->firstHalfFlight->origin_airport."&destination=".$allFlights->returnFlight->firstHalfFlight->destination_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
+     }
 
-//      if(strcasecmp($allFlights->returnFlight->secondHalfFlight->operating_airline,"VN") == 0){
-//           $second_airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$allFlights->returnFlight->secondHalfFlight->origin_airport."&destination=".$allFlights->returnFlight->secondHalfFlight->destination_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
-//      }    
-//      $first_aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$allFlights->returnFlight->firstHalfFlight->aircraft);
+     if(strcasecmp($allFlights->returnFlight->secondHalfFlight->operating_airline,"VN") == 0){
+          $second_airline->website= " https://wl-prod.sabresonicweb.com/SSW2010/VNVN/webqtrip.html?"."searchType=NORMAL&journeySpan=OW&origin=".$allFlights->returnFlight->secondHalfFlight->origin_airport."&destination=".$allFlights->returnFlight->secondHalfFlight->destination_airport."&departureDate=".$start_date."&numAdults=".$adults."&numChildren=".$children."&numInfants=".$infants."&alternativeLandingPage=true&promoCode=&lang=en_US";
+     }    
+     $first_aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$allFlights->returnFlight->firstHalfFlight->aircraft);
 
-//      $second_aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$allFlights->returnFlight->secondHalfFlight->aircraft);
+     $second_aircraft = file_get_contents("https://ae.roplan.es/api/hex-type.php?hex=".$allFlights->returnFlight->secondHalfFlight->aircraft);
 
-//                     //get flight duration
-//      $first_departs_datetime = new DateTime($first_departs_date."".$first_departs_time);
-//      $first_flight_duration_object = $first_departs_datetime->diff(new DateTime($first_arrive_date."".$first_arrive_time));
+                    //get flight duration
+     $first_departs_datetime = new DateTime($first_departs_date."".$first_departs_time);
+     $first_flight_duration_object = $first_departs_datetime->diff(new DateTime($first_arrive_date."".$first_arrive_time));
 
-//      $second_departs_datetime = new DateTime($second_departs_date."".$second_departs_time);
-//      $second_flight_duration_object = $second_departs_datetime->diff(new DateTime($second_arrive_date."".$second_arrive_time));
+     $second_departs_datetime = new DateTime($second_departs_date."".$second_departs_time);
+     $second_flight_duration_object = $second_departs_datetime->diff(new DateTime($second_arrive_date."".$second_arrive_time));
 
-//      $stop_duration_datetime = new DateTime($first_arrive_date."".$first_arrive_time);
-//      $stop_duration_object = $stop_duration_datetime->diff(new DateTime($second_departs_date."".$second_departs_time));
+     $stop_duration_datetime = new DateTime($first_arrive_date."".$first_arrive_time);
+     $stop_duration_object = $stop_duration_datetime->diff(new DateTime($second_departs_date."".$second_departs_time));
 
-//      $first_flight_duration = $first_flight_duration_object->h ."h ".$first_flight_duration_object->i."m";
+     $first_flight_duration = $first_flight_duration_object->h ."h ".$first_flight_duration_object->i."m";
 
-//      $second_flight_duration = $second_flight_duration_object->h ."h ".$second_flight_duration_object->i."m";
+     $second_flight_duration = $second_flight_duration_object->h ."h ".$second_flight_duration_object->i."m";
 
-//      $total_duration_hour =$first_flight_duration_object->h+$second_flight_duration_object->h ;
-//      $total_duration_minute = $first_flight_duration_object->i +$second_flight_duration_object->i;
-//      if($total_duration_minute ==60){
-//           $total_duration_hour = $total_duration_hour +1;
-//           $total_duration_minute =00;
-//      }
-//      if($total_duration_minute >60){
-//           $total_duration_hour = $total_duration_hour +1;
-//           $total_duration_minute =$total_duration_minute -60;
-//      }
+     $total_duration_hour =$first_flight_duration_object->h+$second_flight_duration_object->h ;
+     $total_duration_minute = $first_flight_duration_object->i +$second_flight_duration_object->i;
+     if($total_duration_minute ==60){
+          $total_duration_hour = $total_duration_hour +1;
+          $total_duration_minute =00;
+     }
+     if($total_duration_minute >60){
+          $total_duration_hour = $total_duration_hour +1;
+          $total_duration_minute =$total_duration_minute -60;
+     }
 
-//      $overall_duration_hour =$total_duration_hour + $stop_duration_object->h;
+     $overall_duration_hour =$total_duration_hour + $stop_duration_object->h;
 
-//      $overall_duration_minute = $total_duration_minute +$stop_duration_object->i;
-// // echo "";
-//      if($overall_duration_minute ==60){
-//           $overall_duration_hour = $overall_duration_hour +1;
-//           $overall_duration_minute =00;
-//      }
-//      if($overall_duration_minute >60){
-//           $overall_duration_hour = $overall_duration_hour +1;
-//           $overall_duration_minute = $overall_duration_minute -60;
-//      }
+     $overall_duration_minute = $total_duration_minute +$stop_duration_object->i;
+// echo "";
+     if($overall_duration_minute ==60){
+          $overall_duration_hour = $overall_duration_hour +1;
+          $overall_duration_minute =00;
+     }
+     if($overall_duration_minute >60){
+          $overall_duration_hour = $overall_duration_hour +1;
+          $overall_duration_minute = $overall_duration_minute -60;
+     }
 
 
-//      $total_flight_duration =$total_duration_hour."h ".$total_duration_minute."m";
-//      $overall_flight_duration = $overall_duration_hour."h ".$overall_duration_minute."m";
-//      $stop_flight_duration = $stop_duration_object->h."h".$stop_duration_object->i."m";
+     $total_flight_duration =$total_duration_hour."h ".$total_duration_minute."m";
+     $overall_flight_duration = $overall_duration_hour."h ".$overall_duration_minute."m";
+     $stop_flight_duration = $stop_duration_object->h."h".$stop_duration_object->i."m";
 
-//      $total_hasstop_flight = $allFlights->returnFlight->firstHalfFlight->total_price + $allFlights->returnFlight->secondHalfFlight->total_price ;
-// if(strcasecmp(get_class($allFlights->departFlight),"HasStopFlight") == 0){ 
-// echo "<div style=\"padding-top:170px !important\"></div>";
-// }
-// hasStopFlightDetail("Arrive",$first_arrive_date,$first_departs_date,$second_departs_date,$second_arrive_date,$first_arrive_time,$first_departs_time,$second_arrive_time,$second_departs_time,$from_airport,$to_airport,$airline,$second_airline,$allFlights->returnFlight,$first_flight_duration,$second_flight_duration,$first_aircraft,$second_aircraft,$currency,$stop_flight_duration,$from_airport_name,$to_airport_name,$stop_airport);
+     $total_hasstop_flight = $allFlights->returnFlight->firstHalfFlight->total_price + $allFlights->returnFlight->secondHalfFlight->total_price ;
+if(strcasecmp(get_class($allFlights->departFlight),"HasStopFlight") == 0){ 
+echo "<div style=\"padding-top:170px !important\"></div>";
+}
+hasStopFlightDetail("Arrive",$first_arrive_date,$first_departs_date,$second_departs_date,$second_arrive_date,$first_arrive_time,$first_departs_time,$second_arrive_time,$second_departs_time,$from_airport,$to_airport,$airline,$second_airline,$allFlights->returnFlight,$first_flight_duration,$second_flight_duration,$first_aircraft,$second_aircraft,$currency,$stop_flight_duration,$from_airport_name,$to_airport_name,$stop_airport);
 
 
 
-// }
-// echo '</div>';
-//      // echo '<div class="modal-footer">';
-//      // echo '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-//      // echo '</div>';
-// echo '</div>';
-// echo '</div>';
-// echo '</div>';
+}
+echo '</div>';
+     // echo '<div class="modal-footer">';
+     // echo '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+     // echo '</div>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
 
 
 }

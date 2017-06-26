@@ -25,7 +25,7 @@ function findCityName($to_airport){
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-	CURLOPT_URL => "https://api.sandbox.amadeus.com/v1.2/location/".$to_airport."?apikey=6NwaGnAUxDUPV2MEFhAW0cR9uhGAQ4ol",
+	CURLOPT_URL => "https://api.sandbox.amadeus.com/v1.2/location/".$to_airport."?apikey=B9YiDA5BMa8PnEOgWglAwAuRhAzF9A6q",
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_ENCODING => "",
 	CURLOPT_MAXREDIRS => 10,
